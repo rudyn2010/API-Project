@@ -2,8 +2,10 @@
 const express = require('express');
 const router = express.Router();
 
-//TEST ROUTER
-/* from earlier "Hello World" -- removed */
+// ... Import this file from api/index into the routes/index.js
+// file and connect it to the router there.
+const apiRouter = require('./api');
+router.use('/api', apiRouter);
 
 // backend/routes/index.js
 // ... CSRF Token access for development
@@ -17,13 +19,6 @@ router.get("/api/csrf/restore", (req, res) => {
 });
 // ...
 
-// backend/routes/index.js
-// ... Import this file from api/index into the routes/index.js
-// file and connect it to the router there.
-const apiRouter = require('./api');
-
-router.use('/api', apiRouter);
-// ...
 
 
 //Have to export the router for use

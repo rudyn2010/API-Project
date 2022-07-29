@@ -3,12 +3,25 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
 
+//Phase 4
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js');
+
 // GET /api/restore-user
 const { restoreUser } = require('../../utils/auth.js');
 
 router.use(restoreUser);
-// //Test the restoreUser middleware and check whether or not the req.user has been populated by the middleware properly
 
+//Phase 4
+router.use('/session', sessionRouter);
+
+router.use('/users', usersRouter);
+
+router.post('/test', (req, res) => {
+  res.json({ requestBody: req.body });
+});
+
+// //Test the restoreUser middleware and check whether or not the req.user has been populated by the middleware properly
 // router.get(
 //   '/restore-user',
 //   (req, res) => {

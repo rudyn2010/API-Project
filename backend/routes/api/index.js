@@ -6,6 +6,7 @@ const router = require('express').Router();
 //Phase 4
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+//For future routers spotsRouter('ex file location')
 
 // GET /api/restore-user
 const { restoreUser } = require('../../utils/auth.js');

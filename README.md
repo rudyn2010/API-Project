@@ -4,7 +4,7 @@ OxygenBnB
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![alt text](dbschema.png)
 
 ## API Documentation
 

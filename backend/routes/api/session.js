@@ -2,7 +2,7 @@
 const express = require('express')
 
 //Phase 4 - User Login API ROUTE
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 //Phase 5 -Import check functions we created

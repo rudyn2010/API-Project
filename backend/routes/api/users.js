@@ -25,23 +25,66 @@ const validateSignup = [
       .not()
       .isEmail()
       .withMessage('Username cannot be an email.'),
+//Extra Password checks
+    check('password')
+      .exists({checkFalsy:true})
+      .notEmpty()
+      .withMessage('Password is required.'),
     check('password')
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
       .withMessage('Password must be 6 characters or more.'),
+//Validate Sign-Up with firstName and lastName
+    check('firstName')
+      .exists({ checkFalsy: true })
+      .withMessage('First Name is required.'),
+    check('lastName')
+      .exists({ checkFalsy: true })
+      .withMessage('Last Name is required.'),
     handleValidationErrors
   ];
 
-
-// Sign up
+// Sign Up a User Route
 router.post('/', validateSignup, async (req, res) => {
-    const { email, password, username } = req.body;
-    const user = await User.signup({ email, username, password });
+    const { firstName, lastName, email, username, password } = req.body;
 
-    await setTokenCookie(res, user);
+    const emailValidation = await User.findOne({
+      where: { email }
+    });
+    if (emailValidation) {
+      res.status(403)
+      return res.json({
+        "message": "User already exists",
+        "statusCode": 403,
+        "errors": {
+          "email": "User with that email already exists"
+        }
+      })
+    };
+
+    const usernameValidation = await User.findOne({
+      where: { username }
+    });
+    if (usernameValidation) {
+      res.status(403)
+      return res.json({
+        "message": "User already exists",
+        "statusCode": 403,
+        "errors": {
+          "username": "User with that username already exists"
+        }
+      })
+    };
+
+    //Sign Up a new user if passing email / username validation (not in db)
+    const newUser = await User.signup({ firstName, lastName, email, username, password });
+    const token = await setTokenCookie(res, user);
+
+    newUser = newUser.toJSON()
+    newUser.token = token
 
     return res.json({
-        user
+        newUser
     });
 });
 

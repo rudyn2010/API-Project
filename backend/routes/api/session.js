@@ -8,6 +8,8 @@ const { User } = require('../../db/models');
 //Phase 5 -Import check functions we created
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+//??? where did this come from
+const { use } = require('./users');
 
 //Phase 5 - middleware to check these keys and validate them
 const validateLogin = [
@@ -37,10 +39,11 @@ router.post('/', validateLogin, async (req, res, next) => {
         return next(err);
     }
 
-    await setTokenCookie(res, user);
-
+    const token = await setTokenCookie(res, user);
+    const validUser = user.toSafeObject();
+    validUser.token = token;
     return res.json({
-        user
+        validUser
     });
 });
 

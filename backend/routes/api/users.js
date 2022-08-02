@@ -78,13 +78,14 @@ router.post('/', validateSignup, async (req, res) => {
 
     //Sign Up a new user if passing email / username validation (not in db)
     const newUser = await User.signup({ firstName, lastName, email, username, password });
-    const token = await setTokenCookie(res, user);
 
-    newUser = newUser.toJSON()
-    newUser.token = token
+    const token = await setTokenCookie(res, newUser);
+
+    const info = newUser.toSafeObject()
+    info.token = token
 
     return res.json({
-        newUser
+        info
     });
 });
 

@@ -23,8 +23,6 @@ const validateLogin = [
 
 const router = express.Router();
 
-//Test
-
 // Phase 4 - Log in
 router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;

@@ -190,8 +190,34 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 //Get all Reviews by a Spot's Id - Reviews feature
 router.get('/:spotId/reviews', async (req, res, next) => {
     const { spotId } = req.params;
+    const spotById = await Spot.findByPk(spotId);
 
-    res.json();
+    if (!spotById) {
+        const error = new Error("Spot couldn't be found");
+        error.status = 404;
+        //error.errors = [`Spot with ID: ${spotId} does not exist`];
+        return next(error);
+    } else {
+        const reviews = await Review.findAll({
+            where: {
+                spotId
+            }
+        });
+        //console.log("Im here", reviews)
+        for (let review of reviews) {
+            const user = await review.getUser({
+              attributes: ['id', 'firstName', 'lastName']
+            });
+            const image = await review.getImages({
+              attributes: ['id', ['reviewId', 'imageableId'], 'url']
+            });
+            review.dataValues.User = user.toJSON();
+            review.dataValues.Image = image
+          }
+        return res.json({
+            "Reviews": reviews
+        });
+    }
 });
 
 //Create a Review for a Spot based on the Spot's ID - Reviews feature

@@ -5,7 +5,7 @@ const { User, Spot, Image, Booking, Review } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const spot = require('../../db/models/spot');
+//const spot = require('../../db/models/spot');
 
 const router = express.Router();
 
@@ -185,6 +185,19 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
             "statusCode": 200
         })
     };
+});
+
+//Get all Reviews by a Spot's Id - Reviews feature
+router.get('/:spotId/reviews', async (req, res, next) => {
+    const { spotId } = req.params;
+
+    res.json();
+});
+
+//Create a Review for a Spot based on the Spot's ID - Reviews feature
+router.post('/:spotId/reviews', requireAuth, async(req, res, next) => {
+
+    res.json();
 });
 
 module.exports = router;

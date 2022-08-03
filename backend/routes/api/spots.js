@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-const { User, Spot } = require('../../db/models');
+const { User, Spot, Image, Booking, Review } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -9,6 +9,7 @@ const spot = require('../../db/models/spot');
 
 const router = express.Router();
 
+//Get Spot of Current User
 router.get('/current', requireAuth, async (req, res, next) => {
     const currentId = req.user.id
     const spotsOfCurrentUser = await Spot.findAll({
@@ -19,13 +20,14 @@ router.get('/current', requireAuth, async (req, res, next) => {
     res.json(spotsOfCurrentUser);
 });
 
+//Get Details of Spot by ID
 router.get('/:spotId', async (req, res, next) => {
     const { spotId } = req.params;
     const spotDetailsId = await Spot.findByPk(spotId);
 
     if (!spotDetailsId) {
         return res.json({
-            "message": "Spot couldn't be found",
+            "message": `Spot with ID: ${spotId} couldn't be found`,
             "statusCode": 404
         });
     } else {
@@ -90,8 +92,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
         //     "message": "Spot couldn't be found",
         //     "statusCode": 404
         // });
-    }
-
+    };
     const newImage = await Image.create({
         url: url,
         spotId: spotId,
@@ -103,8 +104,6 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
         "url": newImage.url
     });
 });
-
-//----------------------------------------------
 
 router.post('/', validateSpot, requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;

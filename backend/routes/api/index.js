@@ -7,6 +7,7 @@ const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 //For future routers spotsRouter('ex file location')
+const spotsRouter = require('./spots.js')
 
 // GET /api/restore-user
 const { restoreUser } = require('../../utils/auth.js');
@@ -20,6 +21,7 @@ router.use('/users', usersRouter);
 
 //For future imports:
 // here
+router.use('/spots', spotsRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });

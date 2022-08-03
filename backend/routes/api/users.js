@@ -2,7 +2,7 @@
 const express = require('express')
 
 //Phase 4 - User Signup requires
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 //Phase 5 - Validating Signup Request Body

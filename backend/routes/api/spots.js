@@ -75,9 +75,33 @@ const validateSpot = [
 //Post an Image to a Spot based on the Spot's ID
 //my code here
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
+    const { url } = req.body;
+    const { spotId } = req.params;
 
+    const spotById = await Spot.findByPk(spotId);
 
-    res.json();
+    if(!spotById) {
+        const error = new Error("Spot couldn't be found");
+        error.status = 404;
+        error.errors = [`Spot with ID: ${spotId} does not exist`];
+        return next(error);
+        // res.status(404);
+        // return res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        // });
+    }
+
+    const newImage = await Image.create({
+        url: url,
+        spotId: spotId,
+        userId: req.user.id
+    });
+    return res.json({
+        "id": newImage.id,
+        "imageableId": newImage.spotId,
+        "url": newImage.url
+    });
 });
 
 //----------------------------------------------

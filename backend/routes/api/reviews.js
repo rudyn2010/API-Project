@@ -11,10 +11,10 @@ const router = express.Router();
 
 //Get all Reviews of the Current User
 router.get('/current', requireAuth, async (req, res, next) => {
-    const { currentUserId } = req.user;
-    const reviews = Review.findAll({
+    const { id } = req.user;
+    const reviews = await Review.findAll({
         where: {
-            userId: currentUserId
+            userId: id
         }
     });
     for (let review of reviews) {

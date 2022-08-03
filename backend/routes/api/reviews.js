@@ -17,24 +17,20 @@ router.get('/current', requireAuth, async (req, res, next) => {
             userId: currentUserId
         }
     });
-    const user = User.findAll({
-        where: {
-            id: reviews.userId
-        }
-    });
-    const userTest = User.findByPk(currentUserId);
-    const spots = Spot.findAll({
-        where: {
-            id: reviews.spotId
-        }
-    })
-    const images = Image.findAll({
-        where: {
-            reviewId: mhj
-        }
-    })
+    for (let review of reviews) {
+        const ownerOfReview = await review.getUser({
+            attributes: ['id', 'firstName', 'lastName']
+        });
+        const spotOfReview = await review.getSpot();
+        const imagesOfReview = await review.getImages({
+            attributes: ['id', ['reviewId', 'imageableId'], 'url']
+        });
+        review.dataValues.User = ownerOfReview.toJSON();
+        review.dataValues.Spot = spotOfReview.toJSON();
+        review.dataValues.Images = imagesOfReview;
+    };
 
-    res.json({
+    return res.json({
         "Reviews": reviews
     });
 });

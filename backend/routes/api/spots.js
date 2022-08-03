@@ -89,6 +89,6 @@ router.post('/', validateSpot, requireAuth, async (req, res, next) => {
       })
 
     return res.json(newSpot)
-})
+});
 
 module.exports = router;

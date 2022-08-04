@@ -71,10 +71,9 @@ router.get('/:spotId', async (req, res, next) => {
     const spotDetailsId = await Spot.findByPk(spotId);
 
     if (!spotDetailsId) {
-        return res.json({
-            "message": `Spot with ID: ${spotId} couldn't be found`,
-            "statusCode": 404
-        });
+        const error = new Error("Spot couldn't be found");
+        error.status = 404;
+        return next(error);
     } else {
         return res.json(spotDetailsId);
     };
@@ -142,17 +141,18 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res, next) => {
     const spotById = await Spot.findByPk(spotId);
     //{ where: { ownerId: req.user.id }}
     if (!spotById) {
-        res.status(404);
-        return res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-        })
+        const error = new Error("Spot couldn't be found");
+        error.status = 404;
+        return next(error);
     } else if (spotById.ownerId !== req.user.id) {
-        res.status(403)
-        return res.json({
-            "message": "Forbidden",
-            "statusCode": 403
-        })
+        const error = new Error("Forbidden");
+        error.status = 403;
+        return next(error);
+        // res.status(403)
+        // return res.json({
+        //     "message": "Forbidden",
+        //     "statusCode": 403
+        // })
     } else {
         spotById.address = address;
         spotById.city = city;

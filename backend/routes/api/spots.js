@@ -148,11 +148,6 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res, next) => {
         const error = new Error("Forbidden");
         error.status = 403;
         return next(error);
-        // res.status(403)
-        // return res.json({
-        //     "message": "Forbidden",
-        //     "statusCode": 403
-        // })
     } else {
         spotById.address = address;
         spotById.city = city;
@@ -264,5 +259,43 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
     res.status(201)
     return res.json(newReview);
 });
+
+//Get All Bookings for a spot based on the Spot's Id
+router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
+    const { spotId } = req.params;
+    const spotById = await Spot.findByPk(spotId);
+
+    if (!spotById) {
+        const error = new Error('Spot couldnt be found');
+        error.status = 404;
+        return next(error);
+    }
+    //Owner response here
+    if (spotById.ownerId === req.user.id) {
+        const bookings = await Booking.findAll({
+            where : {
+                spotId: spotId
+            },
+            include: {
+                model: User
+            }
+        });
+        return res.json({
+            "Bookings": bookings
+        })
+    //Not Owner response here
+    } else {
+        const bookings = await Booking.findAll({
+            where: {
+                spotId: spotId
+            },
+            attributes: ['spotId', 'startDate', 'endDate']
+        });
+        return res.json({
+            "Bookings": bookings
+        })
+    }
+});
+
 
 module.exports = router;

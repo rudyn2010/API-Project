@@ -8,6 +8,17 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+//Validate Reviews - taken from Spots.js (can also import it for use)
+const validateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .isInt({ min: 1, max: 5 })
+        .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+];
 
 //Get all Reviews of the Current User
 router.get('/current', requireAuth, async (req, res, next) => {
@@ -71,14 +82,27 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 });
 
 //Edit a Review
-router.put('/:reviewId', requireAuth, async (req, res, next) => {
+router.put('/:reviewId', restoreUser, requireAuth, validateReview, async (req, res, next) => {
+    const { reviewId } = req.params;
+    const { review, stars } = req.body;
 
-    res.json();
+    const reviewById = await Review.findByPk(reviewId);
+    if (!reviewById) {
+        const error = new Error("Review couldnt be found");
+        error.status = 404;
+        return next(error)
+    } else {
+        reviewById.review = review;
+        reviewById.stars = stars;
+
+        await reviewById.save();
+        return res.json(reviewById);
+    };
 });
 
 //Delete a Review
 router.delete('/:reviewId', requireAuth, async (req, res, next) => {
-
+    const { review }
     res.json();
 });
 

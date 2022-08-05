@@ -101,7 +101,7 @@ const validateQueryParams = [
   ];
 
 //Get Spot of Current User
-router.get('/current', requireAuth, async (req, res, next) => {
+router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
     const currentId = req.user.id
     const spots = await Spot.findAll({
         where: {
@@ -136,13 +136,33 @@ router.get('/current', requireAuth, async (req, res, next) => {
 //Get Details of Spot by ID
 router.get('/:spotId', async (req, res, next) => {
     const { spotId } = req.params;
-    const spotDetailsId = await Spot.findByPk(spotId);
-
+    const spotDetailsId = await Spot.findByPk(spotId, {
+        include: [
+            {
+                model: Image,
+                attributes: ["id", ["spotId", "imageableId"], "url"]
+            },
+            {
+                model: User,
+                as: "Owner",
+                attributes: ["id", "firstName", "lastName"]
+            }
+        ]
+    });
     if (!spotDetailsId) {
         const error = new Error("Spot couldn't be found");
         error.status = 404;
         return next(error);
     } else {
+        const review = await spotDetailsId.getReviews({
+            attributes: [
+                [sequelize.fn("COUNT", sequelize.col("id")), "numReviews"],
+                [sequelize.fn("AVG", sequelize.col("stars")), "avgRating"]
+            ]
+        });
+        spotDetailsId.dataValues.numReviews = review[0].dataValues.numReviews;
+        spotDetailsId.dataValues.avgStarRating = Number(review[0].dataValues.avgRating).toFixed(1);
+
         return res.json(spotDetailsId);
     };
 });

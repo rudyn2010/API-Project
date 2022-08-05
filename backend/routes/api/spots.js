@@ -57,10 +57,10 @@ const validateReview = [
 const validateBooking = [
     check('startDate')
         .exists({ checkFalsy: true })
-        .withMessage('Start date is required'),
+        .withMessage('Start date is required.'),
     check('endDate')
         .exists({ checkFalsy: true })
-        .withMessage('End date is required'),
+        .withMessage('End date is required.'),
     handleValidationErrors
 ];
 
@@ -95,7 +95,6 @@ router.get('/', async (req, res, next) => {
         "Spots": allSpots
     });
 });
-
 
 //Post an Image to a Spot based on the Spot's ID
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
@@ -311,6 +310,9 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 router.post('/:spotId/bookings', requireAuth, validateBooking, async (req, res, next) => {
     const { spotId } = req.params;
     const { startDate, endDate } = req.body;
+    //dates come in as strings have to convert into date objects
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
 
     //Check the spot to book
     const spot = await Spot.findByPk(spotId);
@@ -319,28 +321,47 @@ router.post('/:spotId/bookings', requireAuth, validateBooking, async (req, res, 
         error.status = 404;
         return next(error);
     };
+    //Check if current user owns the spot
+    if (spot.ownerId === req.user.id) {
+        const error = new Error('Cannot create booking, spot cannot belong to current user!');
+        error.status = 403;
+        return next(error);
+    };
     //Check if there are any current bookings for spot if found
     const bookings = await Booking.findAll({
         where: {
-            spotId: spotId,
+            spotId: spot.id,
             [Op.and]: [
                 { startDate: {[Op.lte]: endDate} },
                 { endDate: {[Op.gte]: startDate} }
             ]
         }
     });
-    if (bookings.length) { //If length, means there is already a booking
-        const error = new Error('Sorry, this spot is already booked for the specified dates');
-        error.status = 403;
-        return next(error);
-    } else { //else create a booking if no length (no current booking)
-        const newBooking = await Booking.create({
-            spotId: spotId,
-            userId: req.user.id,
-            startDate: startDate,
-            endDate: endDate
-        });
-        return res.json(newBooking);
+
+    for (let booking of bookings) {
+        if (startDate >= booking.startDate && startDate <= booking.endDate) {
+            const error = new Error("Start date conflicts with an existing booking");
+            error.status = 403;
+            return next(error);
+        }
+        if (endDate <= booking.endDate && endDate >= booking.startDate) {
+            const error = new Error("End date conflicts with an existing booking");
+            error.status = 403;
+            return next(error);
+        }
+        if (bookings.length) { //If length, means there is already a booking
+            const error = new Error('Sorry, this spot is already booked for the specified dates');
+            error.status = 403;
+            return next(error);
+        } else { //else create a booking if no length (no current booking)
+            const newBooking = await Booking.create({
+                spotId: spotId,
+                userId: req.user.id,
+                startDate: startDate,
+                endDate: endDate
+            });
+            return res.json(newBooking);
+        };
     };
 });
 

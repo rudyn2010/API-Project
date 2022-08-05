@@ -12,7 +12,13 @@ const router = express.Router();
 
 //Validators Here
 const validateBooking = [
-
+    check('startDate')
+        .exists({ checkFalsy: true })
+        .withMessage('Start date is required'),
+    check('endDate')
+        .exists({ checkFalsy: true })
+        .withMessage('End date is required'),
+    handleValidationErrors
 ];
 
 //Get All of the Current User's Bookings

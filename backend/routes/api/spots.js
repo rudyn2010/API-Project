@@ -54,6 +54,16 @@ const validateReview = [
     handleValidationErrors
 ];
 
+const validateBooking = [
+    check('startDate')
+        .exists({ checkFalsy: true })
+        .withMessage('Start date is required'),
+    check('endDate')
+        .exists({ checkFalsy: true })
+        .withMessage('End date is required'),
+    handleValidationErrors
+];
+
 //Get Spot of Current User
 router.get('/current', requireAuth, async (req, res, next) => {
     const currentId = req.user.id
@@ -295,6 +305,43 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
             "Bookings": bookings
         })
     }
+});
+
+//Create a Booking from a Spot based on the Spot's Id
+router.post('/:spotId/bookings', requireAuth, validateBooking, async (req, res, next) => {
+    const { spotId } = req.params;
+    const { startDate, endDate } = req.body;
+
+    //Check the spot to book
+    const spot = await Spot.findByPk(spotId);
+    if (!spot) {
+        const error = new Error('Spot couldnt be found');
+        error.status = 404;
+        return next(error);
+    };
+    //Check if there are any current bookings for spot if found
+    const bookings = await Booking.findAll({
+        where: {
+            spotId: spotId,
+            [Op.and]: [
+                { startDate: {[Op.lte]: endDate} },
+                { endDate: {[Op.gte]: startDate} }
+            ]
+        }
+    });
+    if (bookings.length) { //If length, means there is already a booking
+        const error = new Error('Sorry, this spot is already booked for the specified dates');
+        error.status = 403;
+        return next(error);
+    } else { //else create a booking if no length (no current booking)
+        const newBooking = await Booking.create({
+            spotId: spotId,
+            userId: req.user.id,
+            startDate: startDate,
+            endDate: endDate
+        });
+        return res.json(newBooking);
+    };
 });
 
 

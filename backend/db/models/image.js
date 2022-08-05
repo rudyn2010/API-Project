@@ -20,10 +20,16 @@ module.exports = (sequelize, DataTypes) => {
   }
   Image.init({
     url: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isUrl: true
+      }
     },
     previewImage: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     },
     spotId: {
       type: DataTypes.INTEGER,
@@ -34,7 +40,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     userId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,

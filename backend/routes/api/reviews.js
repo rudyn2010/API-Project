@@ -62,7 +62,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
             spotId: review.spotId
         }
     });
-    if (imagesOfReview.length >= 10) {
+    if (imagesOfReview.length > 10) {
         const error = new Error("Maximum number of images for this resource was reached");
         error.status = 403;
         return next(error);

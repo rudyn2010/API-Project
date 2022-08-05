@@ -121,20 +121,18 @@ router.delete('/:bookingId', requireAuth, restoreUser, async (req, res, next) =>
     const todaysDate = new Date();
     //Find booking
     const booking = await Booking.findByPk(bookingId);
-
-    //Find spot to get ownerId to delete bookings for their spot
-    const spot = await Spot.findByPk(booking.spotId);
-
     if (!booking) {
         const error = new Error("Booking couldn't be found");
         error.status = 404;
         return next(error);
     };
-    if (booking.startDate < todaysDate || todaysDate < booking.endDate) {
+    if (booking.startDate < todaysDate /*|| todaysDate < booking.endDate*/) {
         const error = new Error("Bookings that have been started can't be deleted");
         error.status = 403;
         return next(error);
-    }
+    };
+    //Find spot to get ownerId to delete bookings for their spot
+    const spot = await Spot.findByPk(booking.spotId);
     if (booking.userId === req.user.id || spot.ownerId === req.user.id) {
         await booking.destroy();
         return res.json({

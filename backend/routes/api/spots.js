@@ -136,10 +136,11 @@ router.get('/', validateQueryParams, async (req, res, next) => {
     if (page >= 1 && size >= 1) {
         pagination.limit = size;
         pagination.offset = size * (page - 1);
-    }
+    };
 
     //Setup query filters
     let queryFilters = [];
+
     if (minLat) queryFilters.push({lat: {[Op.gte]: Number(minLat)}});
     if (maxLat) queryFilters.push({lat: {[Op.lte]: Number(maxLat)}});
     if (minLng) queryFilters.push({lng: {[Op.gte]: Number(minLng)}});
@@ -156,12 +157,12 @@ router.get('/', validateQueryParams, async (req, res, next) => {
         ...pagination
     });
     for (let spot of allSpots) {
-        const spotReview = await spot.getReviews({
+        const spotReviews = await spot.getReviews({
             attributes: [
                 [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
             ]
         });
-        const avgRating = spotReview[0].dataValues.avgStarRating;
+        const avgRating = spotReviews[0].dataValues.avgStarRating;
         spot.dataValues.avgRating = Number(avgRating).toFixed(1);
         const previewImage = await Image.findOne({
             where: {

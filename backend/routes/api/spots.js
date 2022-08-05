@@ -106,7 +106,6 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     if(!spotById) {
         const error = new Error("Spot couldn't be found");
         error.status = 404;
-        error.errors = [`Spot with ID: ${spotId} does not exist`];
         return next(error);
     };
     const newImage = await Image.create({
@@ -180,17 +179,13 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     const spotToDelete = await Spot.findByPk(spotId);
 
     if (!spotToDelete) {
-        res.status(404);
-        return res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-        });
+        const error = new Error("Spot couldn't be found");
+        error.status = 404;
+        return next(error);
     } else if (spotToDelete.ownerId !== req.user.id) {
-        res.status(403);
-        return res.json({
-            "message": "Forbidden",
-            "statusCode": 403
-        })
+        const error = new Error("Forbidden");
+        error.status = 403;
+        return next(error);
     } else {
         await spotToDelete.destroy()
         return res.json({
@@ -275,7 +270,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
     const spotById = await Spot.findByPk(spotId);
 
     if (!spotById) {
-        const error = new Error('Spot couldnt be found');
+        const error = new Error("Spot couldn't be found");
         error.status = 404;
         return next(error);
     }
@@ -317,13 +312,13 @@ router.post('/:spotId/bookings', requireAuth, validateBooking, async (req, res, 
     //Check the spot to book
     const spot = await Spot.findByPk(spotId);
     if (!spot) {
-        const error = new Error('Spot couldnt be found');
+        const error = new Error("Spot couldn't be found");
         error.status = 404;
         return next(error);
     };
     //Check if current user owns the spot
     if (spot.ownerId === req.user.id) {
-        const error = new Error('Cannot create booking, spot cannot belong to current user!');
+        const error = new Error("Cannot create booking, spot cannot belong to current user!");
         error.status = 403;
         return next(error);
     };

@@ -39,9 +39,9 @@ router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
     });
     let resultsArr = [];
     for (let booking of bookings) {
-        let bookingJson = booking.toJSON();
-        bookJson.Spot.previewImage = image.dataValues.url;
-        resultsArr.push(bookJson);
+        let jsonBooking = booking.toJSON();
+        jsonBooking.Spot.previewImage = image.dataValues.url;
+        resultsArr.push(jsonBooking);
     }
     return res.json({
         "Bookings": resultsArr
@@ -59,17 +59,17 @@ router.put('/:bookingId', requireAuth, restoreUser, validateBooking, async (req,
 
     let bookingById = await Booking.findByPk(bookingId);
     if (!bookingById) {
-        const error = new Error("Booking couldnt be found");
+        const error = new Error("Booking couldn't be found");
         error.status = 404;
         return next(error);
     }
-    if (bookingById.ownerId !== req.user.id) {
+    if (bookingById.userId !== req.user.id) {
         const error = new Error("Forbidden. Booking must belong to current user.")
         error.status = 403;
         return next(error);
     }
     if (bookingById.endDate < todaysDate) {
-        const error = new Error("Past bookings cant be modified");
+        const error = new Error("Past bookings can't be modified");
         error.status = 403;
         return next(error);
     }
@@ -111,7 +111,7 @@ router.put('/:bookingId', requireAuth, restoreUser, validateBooking, async (req,
         bookingById.endDate = endDate;
 
         await bookingById.save();
-        return res.json(booking);
+        return res.json(bookingById);
     }
 });
 

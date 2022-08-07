@@ -98,10 +98,18 @@ const validateQueryParams = [
         .isDecimal({min: 0})
         .withMessage("Maximum price must be greater than or equal to 0"),
     handleValidationErrors
-  ];
+];
+
+const validateImage = [
+    check('url')
+        .exists({ checkFalsy: true })
+        .isURL()
+        .withMessage('Valid URL for Image is required'),
+    handleValidationErrors
+];
 
 //Get Spot of Current User
-router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
+router.get('/current', requireAuth, async (req, res, next) => {
     const currentId = req.user.id
     const spots = await Spot.findAll({
         where: {
@@ -226,7 +234,7 @@ router.get('/', validateQueryParams, async (req, res, next) => {
 });
 
 //Post an Image to a Spot based on the Spot's ID
-router.post('/:spotId/images', requireAuth, async (req, res, next) => {
+router.post('/:spotId/images', requireAuth, validateImage, async (req, res, next) => {
     const { url } = req.body;
     const { spotId } = req.params;
 

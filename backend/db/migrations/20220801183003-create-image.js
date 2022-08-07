@@ -10,12 +10,13 @@ module.exports = {
       },
       url: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       previewImage: {
         type: Sequelize.BOOLEAN,
         //allowNull: false,
-        defaultValue: true
+        defaultValue: false
       },
       spotId: {
         type: Sequelize.INTEGER,

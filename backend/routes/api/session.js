@@ -55,7 +55,7 @@ router.delete('/', (_req, res) => {
 });
 
 // Phase 4 - Restore session user
-router.get('/', restoreUser, (req, res) => {
+router.get('/', restoreUser, requireAuth, (req, res) => {
     const { user } = req;
       if (user) {
         return res.json({

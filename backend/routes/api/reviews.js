@@ -82,7 +82,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 });
 
 //Edit a Review
-router.put('/:reviewId', restoreUser, requireAuth, validateReview, async (req, res, next) => {
+router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {
     const { reviewId } = req.params;
     const { review, stars } = req.body;
 
@@ -101,7 +101,7 @@ router.put('/:reviewId', restoreUser, requireAuth, validateReview, async (req, r
 });
 
 //Delete a Review
-router.delete('/:reviewId', restoreUser, requireAuth, async (req, res, next) => {
+router.delete('/:reviewId', requireAuth, async (req, res, next) => {
     const { reviewId } = req.params;
     const reviewById = await Review.findByPk(reviewId);
     if (!reviewById) {

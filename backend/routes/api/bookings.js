@@ -22,7 +22,7 @@ const validateBooking = [
 ];
 
 //Get All of the Current User's Bookings
-router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
+router.get('/current', requireAuth, async (req, res, next) => {
     const bookings = await Booking.findAll({
         where: {
             userId: req.user.id
@@ -49,7 +49,7 @@ router.get('/current', requireAuth, restoreUser, async (req, res, next) => {
 });
 
 //Edit a Booking
-router.put('/:bookingId', requireAuth, restoreUser, validateBooking, async (req, res, next) => {
+router.put('/:bookingId', requireAuth, validateBooking, async (req, res, next) => {
     const { bookingId } = req.params;
     let { startDate, endDate } = req.body;
     startDate = new Date(startDate);
@@ -116,7 +116,7 @@ router.put('/:bookingId', requireAuth, restoreUser, validateBooking, async (req,
 });
 
 //Delete a booking
-router.delete('/:bookingId', requireAuth, restoreUser, async (req, res, next) => {
+router.delete('/:bookingId', requireAuth, async (req, res, next) => {
     const { bookingId } = req.params;
     const todaysDate = new Date();
     //Find booking
@@ -146,8 +146,6 @@ router.delete('/:bookingId', requireAuth, restoreUser, async (req, res, next) =>
             "statusCode": 403
         })
     }
-    // const error = new Error("Forbidden.")
-    // error.status = 403;
 });
 
 module.exports = router;

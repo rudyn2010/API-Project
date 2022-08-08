@@ -32,7 +32,11 @@ router.get('/current', requireAuth, async (req, res, next) => {
         const ownerOfReview = await review.getUser({
             attributes: ['id', 'firstName', 'lastName']
         });
-        const spotOfReview = await review.getSpot();
+        const spotOfReview = await review.getSpot({
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            }
+        });
         const imagesOfReview = await review.getImages({
             attributes: ['id', ['reviewId', 'imageableId'], 'url']
         });

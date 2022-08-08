@@ -200,9 +200,9 @@ router.get('/', validateQueryParams, async (req, res, next) => {
 
     const allSpots = await Spot.findAll({
         where: {
-            [Op.and]: {
+            [Op.and]: [
                 ...queryFilters
-            }
+            ]
         },
         ...pagination
     });

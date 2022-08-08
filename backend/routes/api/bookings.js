@@ -32,14 +32,14 @@ router.get('/current', requireAuth, async (req, res, next) => {
             attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
         }
     });
-    const image = await Image.findOne({
-        where: {
-            userId: req.user.id
-        }
-    });
     let resultsArr = [];
     for (let booking of bookings) {
         let jsonBooking = booking.toJSON();
+        const image = await Image.findOne({
+            where: {
+                spotId: jsonBooking.spotId
+            }
+        });
         jsonBooking.Spot.previewImage = image.dataValues.url;
         resultsArr.push(jsonBooking);
     }

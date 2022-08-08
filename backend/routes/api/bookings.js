@@ -29,7 +29,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
         },
         include: {
             model: Spot,
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            } /* ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'] */
         }
     });
     let resultsArr = [];

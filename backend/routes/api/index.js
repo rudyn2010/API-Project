@@ -28,9 +28,11 @@ router.use('/reviews', reviewsRouter);
 router.use('/bookings', bookingsRouter);
 router.use('/images', imagesRouter);
 
-router.post('/test', (req, res) => {
-  res.json({ requestBody: req.body });
-});
+
+//p2p0: Comment test dont need need it! Made it CSRF Protection on the Frontend!
+// router.post('/test', (req, res) => {
+//   res.json({ requestBody: req.body });
+// });
 
 // //Test the restoreUser middleware and check whether or not the req.user has been populated by the middleware properly
 // router.get(

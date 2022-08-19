@@ -7,7 +7,6 @@ import { csrfFetch } from './csrf';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
-
 //actionCreators
 const setUser = (user) => {
   return {
@@ -73,7 +72,6 @@ export const logout = () => async (dispatch) => {
     dispatch(removeUser());
     return response;
 };
-
 
 const initialState = { user: null };
 

@@ -27,6 +27,7 @@ const router = express.Router();
 
 // Phase 4 - Log in
 router.post('/', validateLogin, async (req, res, next) => {
+  //have to destructure the same stuff from body here and in front end
     const { credential, password } = req.body;
 
     const user = await User.login({ credential, password });
@@ -55,7 +56,7 @@ router.delete('/', (_req, res) => {
 });
 
 // Phase 4 - Restore session user
-router.get('/', restoreUser, requireAuth, (req, res) => {
+router.get('/', restoreUser, (req, res) => {
     const { user } = req;
       if (user) {
         return res.json({

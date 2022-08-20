@@ -347,7 +347,6 @@ router.get('/:spotId/reviews', async (req, res, next) => {
                 spotId
             }
         });
-        //console.log("Im here", reviews)
         for (let review of reviews) {
             const user = await review.getUser({
               attributes: ['id', 'firstName', 'lastName']

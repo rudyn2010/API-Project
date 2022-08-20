@@ -33,9 +33,6 @@ export const login = (validUser) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-
-  console.log(data)
-
   dispatch(setUser(data.validUser));
   return response;
 };

@@ -41,7 +41,7 @@ const updateReview = () => {
 };
 
 
-const removeReview = () => {
+const deleteReview = () => {
     return {
         type: DELETE_REVIEW
     };

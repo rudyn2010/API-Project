@@ -14,9 +14,10 @@ const DELETE_SPOT = 'spots/deleteSpot';
 
 
 //actionCreators
-const loadSpots = () => {
+const loadSpots = (spots) => {
     return {
-        type: LOAD_SPOTS
+        type: LOAD_SPOTS,
+        payload: spots
     };
 };
 
@@ -50,6 +51,12 @@ const deleteSpot = () => {
 
 
 //thunks
+export const fetchSpots = () => async (dispatch) => {
+    //TODO: check which route the fetch is happening with our db
+    const response = await fetch('/');
+    const spots = response.json();
+    dispatch(loadSpots(spots))
+}
 
 //initialState
 const initialState = { spots: null };
@@ -57,11 +64,14 @@ const initialState = { spots: null };
 //reducer
 const spotsReducer = ( state = initialState, action ) => {
     //let newState; (with Object.assign) or let newState = {};
-    let newState = {};
+    const newState = {};
     switch (action.type) {
         //normalizing data for initial store state
         case LOAD_SPOTS:
-        return ;
+            action.payload.forEach( spot => {
+                newState[spot.id] = spot
+            });
+        return newState;
 
         default:
             return state;

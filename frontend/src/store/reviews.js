@@ -1,54 +1,58 @@
 import { csrfFetch } from "./csrf";
 
-//types
+//Types:
 //get all
 const LOAD_REVIEWS = 'reviews/getReviews';
-
 const CREATE_REVIEW = 'reviews/createReview';
 //get one by id
 const READ_REVIEW = 'reviews/readReview';
-
 const UPDATE_REVIEW = 'reviews/updateReview';
-
 const DELETE_REVIEW = 'reviews/deleteReview';
 
 
-//actionCreators
-const loadReviews = () => {
+//ActionCreators:
+const actionLoadReviews = (reviews) => {
     return {
-        type: LOAD_REVIEWS
-    }
-}
+        type: LOAD_REVIEWS,
+        payload: reviews
+    };
+};
 
-const createReview = () => {
+const actionCreateReview = () => {
     return {
         type: CREATE_REVIEW
     };
 };
 
-
-const readReview = () => {
+const actionReadReview = () => {
     return {
         type: READ_REVIEW
     };
 };
 
-
-const updateReview = () => {
+const actionUpdateReview = () => {
     return {
         type: UPDATE_REVIEW
     };
 };
 
-
-const deleteReview = () => {
+const actionDeleteReview = () => {
     return {
         type: DELETE_REVIEW
     };
 };
 
 
-//thunks
+//Thunks
+export const fetchReviews = () => async (dispatch) => {
+    const response = await csrfFetch('/api/reviews');
+
+    if (response.ok) {
+        const reviews = response.json();
+        dispatch(actionLoadReviews(reviews))
+        // return reviews;
+    };
+};
 
 //initialState
 const initialState = { reviews: null };
@@ -60,7 +64,10 @@ const reviewsReducer = ( state = initialState, action ) => {
     switch (action.type) {
         //normalizing data for initial store state
         case LOAD_REVIEWS:
-        return ;
+            action.payload.forEach( review => {
+                newState[review.id] = review
+            });
+        return newState;
 
         default:
             return state;

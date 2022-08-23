@@ -14,7 +14,7 @@ const DELETE_REVIEW = 'reviews/deleteReview';
 const actionLoadReviews = (reviews) => {
     return {
         type: LOAD_REVIEWS,
-        payload: reviews
+        reviews
     };
 };
 
@@ -55,19 +55,19 @@ export const fetchReviews = () => async (dispatch) => {
 };
 
 //initialState
-const initialState = { reviews: null };
+const initialState = {};
 
 //reducer
 const reviewsReducer = ( state = initialState, action ) => {
     //let newState; (with Object.assign) or let newState = {};
     let newState = {};
     switch (action.type) {
-        //normalizing data for initial store state
-        case LOAD_REVIEWS:
-            action.payload.forEach( review => {
+        case LOAD_REVIEWS:{
+            action.reviews.forEach( (review) => {
                 newState[review.id] = review
             });
         return newState;
+        }
 
         default:
             return state;

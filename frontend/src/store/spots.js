@@ -14,7 +14,7 @@ const DELETE_SPOT = 'spots/deleteSpot';
 const actionLoadSpots = (spots) => {
     return {
         type: LOAD_SPOTS,
-        payload: spots
+        spots
     };
 };
 
@@ -45,11 +45,11 @@ const actionDeleteSpot = () => {
 
 //Thunks:
 export const fetchSpots = () => async (dispatch) => {
-    const response = await csrfFetch('/api/spots');
+    const response = await csrfFetch("/api/spots");
 
     if (response.ok) {
-        const spots = await response.json();
-        dispatch(actionLoadSpots(spots));
+        const data = await response.json();
+        dispatch(actionLoadSpots(data.Spots));
         // return spots;
     };
 };
@@ -94,7 +94,7 @@ export const updateASpot = (spotById) => async (dispatch) => {
     };
 };
 //TODO:
-export const deleteASpot = () => async (dispatch) => {
+export const deleteASpot = (example) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${example}`, {
         method: "DELETE",
     });
@@ -106,16 +106,15 @@ export const deleteASpot = () => async (dispatch) => {
 }
 
 //initialState
-const initialState = { spots: null };
+const initialState = {};
 
 //Reducer
 const spotsReducer = ( state = initialState, action ) => {
     //let newState; (with Object.assign) or let newState = {};
     const newState = {};
     switch (action.type) {
-        //normalizing data for initial store state
         case LOAD_SPOTS: {
-            action.payload.forEach( spot => {
+            action.spots.forEach( (spot) => {
                 newState[spot.id] = spot
             });
         return newState;

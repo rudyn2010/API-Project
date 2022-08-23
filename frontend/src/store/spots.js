@@ -18,15 +18,17 @@ const actionLoadSpots = (spots) => {
     };
 };
 
-const actionCreateSpot = () => {
+const actionCreateSpot = (spot) => {
     return {
-        type: CREATE_SPOT
+        type: CREATE_SPOT,
+        spot
     };
 };
 
-const actionReadSpot = () => {
+const actionReadSpot = (spotById) => {
     return {
-        type: READ_SPOT
+        type: READ_SPOT,
+        spotById
     };
 };
 
@@ -54,28 +56,28 @@ export const fetchSpots = () => async (dispatch) => {
     };
 };
 
-export const createASpot = (newSpot) => async (dispatch) => {
+export const createASpot = (spotData) => async (dispatch) => {
     const response = await csrfFetch("/api/spots", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newSpot)
+        body: JSON.stringify(spotData)
     });
 
     if (response.ok) {
-        const data = await response.json();
-        dispatch(actionCreateSpot(data));
+        const spot = await response.json();
+        dispatch(actionCreateSpot(spot));
     };
 };
 //Read:
-export const fetchSpotById = () => async (dispatch) => {
-    const response = await csrfFetch('api/spots/:spotId')
+export const fetchSpotById = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`)
 
     if (response.ok) {
         const spotById = await response.json();
+        console.log("PEEEEEEEENIS:", spotById);
         dispatch(actionReadSpot(spotById));
-
     };
 };
 
@@ -94,14 +96,13 @@ export const updateASpot = (spotById) => async (dispatch) => {
     };
 };
 //TODO:
-export const deleteASpot = (example) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${example}`, {
+export const deleteASpot = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: "DELETE",
     });
 
     if (response.ok) {
-        const spot = await response.json();
-        dispatch(actionDeleteSpot(spot));
+        dispatch(actionDeleteSpot(spotId));
     }
 }
 
@@ -110,16 +111,34 @@ const initialState = {};
 
 //Reducer
 const spotsReducer = ( state = initialState, action ) => {
-    //let newState; (with Object.assign) or let newState = {};
-    const newState = {};
     switch (action.type) {
         case LOAD_SPOTS: {
+            const allSpots = {}
             action.spots.forEach( (spot) => {
-                newState[spot.id] = spot
+                allSpots[spot.id] = spot
             });
-        return newState;
+            return allSpots;
         }
-
+        case CREATE_SPOT: {
+            const newState = { ...state }
+            newState[action.spot.id] = action.spot
+            return newState
+        }
+        case READ_SPOT: {
+            const newState = { ...state }
+            newState[action.spotById.id] = action.spotById
+            return newState
+        }
+        case UPDATE_SPOT: {
+            const newState = { ...state }
+            // newState[action.] = action.
+            return newState
+        }
+        case DELETE_SPOT: {
+            const newState = { ...state }
+            delete newState[action.spotId]
+            return newState
+        }
         default:
             return state;
     };

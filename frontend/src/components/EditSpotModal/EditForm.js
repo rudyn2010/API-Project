@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 // import { useHistory } from "react-router-dom";
 import { createASpot } from "../../store/spots";
 
-const SpotForm = () => {
+const EditSpotForm = () => {
 
     const dispatch = useDispatch();
     //const history = useHistory();
@@ -58,13 +58,13 @@ const SpotForm = () => {
         }
 
         setErrors([]);
-        dispatch(createASpot(spotData));
+        dispatch(updateASpot(spotData));
 
     }
 
     return (
       <form onSubmit={onSubmit}>
-        <h2>Create A New Spot</h2>
+        <h2>Edit Your Spot</h2>
         <ul className="errors">
           {errorsList}
         </ul>
@@ -159,4 +159,4 @@ const SpotForm = () => {
     );
   }
 
-  export default SpotForm;
+  export default EditSpotForm;

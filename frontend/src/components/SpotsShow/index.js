@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import { fetchSpots } from "../../store/spots";
 
@@ -10,7 +11,9 @@ const SpotsShow = () => {
     const spots = useSelector(state => Object.values(state.spots));
 
     const displaySpots = spots.map((spot) => (
-        <div key={spot.id}>{spot.name}</div>
+        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+            <div>{spot.name}</div>
+        </NavLink>
     ))
 
     //template for useEffect, anon function into a return with a dependancy array

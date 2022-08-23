@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import SpotFormModal from "../CreateSpotModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
+      <SpotFormModal />
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
@@ -37,6 +39,7 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
+          {/* CHECK: */}
           <li>
             <button onClick={logout}>Log Out</button>
           </li>

@@ -38,9 +38,10 @@ const actionUpdateSpot = () => {
     };
 };
 
-const actionDeleteSpot = () => {
+const actionDeleteSpot = (spotId) => {
     return {
-        type: DELETE_SPOT
+        type: DELETE_SPOT,
+        spotId
     };
 };
 
@@ -76,7 +77,6 @@ export const fetchSpotById = (spotId) => async (dispatch) => {
 
     if (response.ok) {
         const spotById = await response.json();
-        console.log("PEEEEEEEENIS:", spotById);
         dispatch(actionReadSpot(spotById));
     };
 };

@@ -2,7 +2,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { fetchSpotById } from "../../store/spots";
+import { deleteASpot, fetchSpotById } from "../../store/spots";
 
 
 const SpotDetailsCard = () => {
@@ -19,11 +19,17 @@ const SpotDetailsCard = () => {
 
     // const sessionUser = useSelector((state) => state.session.user);
 
+    const handleDelete = async (e) => {
+        e.preventDefault();
+
+        await dispatch(deleteASpot(spotId));
+
+        history.push("/");
+    }
+
     useEffect(() => {
-
         dispatch(fetchSpotById(spotId));
-
-    }, [ dispatch ]);
+    }, [ dispatch, spotId ]);
 
     if (!spot) {
         return null;
@@ -36,9 +42,9 @@ const SpotDetailsCard = () => {
             <p>{spot.name}</p>
             <p>{spot.description}</p>
             <p>{spot.price}</p>
+            <button onClick={handleDelete}>Delete</button>
         </>
     )
-
 }
 
 export default SpotDetailsCard;

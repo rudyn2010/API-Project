@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createASpot } from "../../store/spots";
 
-const SpotForm = ({ showModal }) => {
+const SpotForm = () => {
 
     const dispatch = useDispatch();
     // const history = useHistory();
@@ -14,11 +14,11 @@ const SpotForm = ({ showModal }) => {
     const [ city, setCity ] = useState("");
     const [ state, setState ] = useState("");
     const [ country, setCountry ] = useState("");
-    const [ lat, setLat ] = useState(null);
-    const [ lng, setLng ] = useState(null);
+    const [ lat, setLat ] = useState("");
+    const [ lng, setLng ] = useState("");
     const [ name, setName ] = useState("");
     const [ description, setDescription ] = useState("");
-    const [ price, setPrice ] = useState(null);
+    const [ price, setPrice ] = useState("");
 
     //slice for errors
     const [ errors, setErrors ] = useState([]);
@@ -59,7 +59,7 @@ const SpotForm = ({ showModal }) => {
 
         setErrors([]);
         dispatch(createASpot(spotData));
-        showModal(false);
+
     }
 
     return (

@@ -11,7 +11,7 @@ const Spots = [
     lng: 20.31,
     name: 'Our Apartment',
     description: 'An apartment complex in SOMA',
-    price: 690
+    price: 220
   },
   {
     ownerId: 1,
@@ -23,7 +23,7 @@ const Spots = [
     lng: 52.11,
     name: 'Lambo Field',
     description: 'Grassy and open area',
-    price: 420
+    price: 345
   },
   {
     ownerId: 4,
@@ -47,7 +47,7 @@ const Spots = [
     lng: 63.25,
     name: 'Disneyland Resort',
     description: 'The happiest place on Earth',
-    price: 911
+    price: 789
   },
   {
     ownerId: 5,
@@ -59,7 +59,31 @@ const Spots = [
     lng: 23.45,
     name: 'Comic Condo',
     description: 'Weebs have a safe space here',
-    price: 12345
+    price: 123
+  },
+  {
+    ownerId: 2,
+    address: '321 Bean Street',
+    city: 'Chicago',
+    state: 'Illinois',
+    country: 'USA',
+    lat: 42.99,
+    lng: 20.31,
+    name: 'The Bean',
+    description: 'A giant metal bean you can sleep under',
+    price: 10
+  },
+  {
+    ownerId: 6,
+    address: '845 S Wall Maria',
+    city: 'Shiganshina',
+    state: 'District',
+    country: 'Japan',
+    lat: 42,
+    lng: 20,
+    name: 'The Cottage',
+    description: 'A nice and cozy little cottage',
+    price: 25
   }
 ]
 

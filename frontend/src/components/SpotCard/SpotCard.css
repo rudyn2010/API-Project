@@ -1,0 +1,59 @@
+.spot-card-container {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.spot-card-img-container {
+    vertical-align: bottom;
+    height: 300px;
+    width: 300px;
+    min-height: 1px;
+}
+
+.spot-card-img {
+    object-fit: cover;
+    vertical-align: bottom;
+    height: 100% !important;
+    width: 100% !important;
+    border-radius: 16px;
+}
+
+.location-star-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.star-rating-display {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.avg-review-rating {
+    font-weight: 220;
+}
+
+.price-per-night {
+    display: flex;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.location {
+    font-weight: 420;
+}
+
+.spot-price {
+    font-weight: 420;
+}
+
+.night-text {
+    font-weight: 220;
+}

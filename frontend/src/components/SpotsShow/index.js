@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { fetchSpots } from "../../store/spots";
+
+import "./SpotsShow.css"
 import SpotCard from "../SpotCard";
 
 
@@ -32,9 +34,7 @@ const SpotsShow = () => {
     return (
         <>
             <div className="spot-show-main-container">
-                <div>
                     {displaySpots}
-                </div>
             </div>
         </>
     )

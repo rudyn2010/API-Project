@@ -31,9 +31,14 @@ const NewNavBar = ({ isLoaded }) => {
 
     return (
         <div className="oxygen-logo-profile-nav">
-            <div className="logo-name-container">
-                <div className="oxygenbnb-logo"><i class="fa-brands fa-airbnb"></i></div>
-                <div className="oxygenbnb-title">oxygenbnb</div>
+            <NavLink exact to="/">
+                <div className="logo-name-container">
+                    <div className="fa-brands fa-airbnb fa-3x" />
+                    <div className="oxygenbnb-title">oxygenbnb</div>
+                </div>
+            </NavLink>
+            <div>
+                {isLoaded && sessionLinks}
             </div>
         </div>
     )

@@ -48,7 +48,7 @@ export const fetchReviews = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(actionLoadReviews());
+        dispatch(actionLoadReviews(data));
 
     };
 };
@@ -68,7 +68,7 @@ export const createAReview = () => async (dispatch) => {
     };
 };
 //Read:
-export const fetchReviewById = () => async (dispatch) => {
+export const fetchReviewById = (Id) => async (dispatch) => {
     const response = await csrfFetch(`/api/reviews/${Id}`)
 
     if (response.ok) {

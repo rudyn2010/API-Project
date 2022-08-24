@@ -32,9 +32,10 @@ const actionReadSpot = (spotById) => {
     };
 };
 
-const actionUpdateSpot = () => {
+const actionUpdateSpot = (spot) => {
     return {
-        type: UPDATE_SPOT
+        type: UPDATE_SPOT,
+        spot
     };
 };
 
@@ -81,13 +82,13 @@ export const fetchSpotById = (spotId) => async (dispatch) => {
     };
 };
 
-export const updateASpot = (spotById) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotById.id}`, {
+export const updateASpot = ({spotId, spotData}) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(spotById)
+        body: JSON.stringify(spotData)
     });
 
     if (response.ok) {
@@ -131,7 +132,7 @@ const spotsReducer = ( state = initialState, action ) => {
         }
         case UPDATE_SPOT: {
             const newState = { ...state }
-            // newState[action.] = action.
+            newState[action.spot.id] = action.spot
             return newState
         }
         case DELETE_SPOT: {

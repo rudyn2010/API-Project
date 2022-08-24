@@ -42,32 +42,99 @@ const actionDeleteReview = () => {
 };
 
 
-//Thunks
+//Thunks:
 export const fetchReviews = () => async (dispatch) => {
-    const response = await csrfFetch('/api/reviews');
+    const response = await csrfFetch("/api/reviews");
 
     if (response.ok) {
-        const reviews = response.json();
-        dispatch(actionLoadReviews(reviews))
-        // return reviews;
+        const data = await response.json();
+        dispatch(actionLoadReviews());
+
     };
 };
+
+export const createAReview = () => async (dispatch) => {
+    const response = await csrfFetch("/api/reviews", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify()
+    });
+
+    if (response.ok) {
+        const review = await response.json();
+        dispatch(actionCreateReview(review));
+    };
+};
+//Read:
+export const fetchReviewById = () => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${Id}`)
+
+    if (response.ok) {
+        const review = await response.json();
+        dispatch(actionReadReview(review));
+    };
+};
+
+export const updateAReview = ({reviewId, reviewData}) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${reviewId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewData)
+    });
+
+    if (response.ok) {
+        const review = await response.json();
+        dispatch(actionUpdateReview(review));
+    };
+};
+//TODO:
+export const deleteAReview = (reviewId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${reviewId}`, {
+        method: "DELETE",
+    });
+
+    if (response.ok) {
+        dispatch(actionDeleteReview(reviewId));
+    }
+}
 
 //initialState
 const initialState = {};
 
 //reducer
 const reviewsReducer = ( state = initialState, action ) => {
-    //let newState; (with Object.assign) or let newState = {};
-    let newState = {};
     switch (action.type) {
         case LOAD_REVIEWS:{
+            const allReviews = {};
             action.reviews.forEach( (review) => {
-                newState[review.id] = review
+                allReviews[review.id] = review
             });
-        return newState;
+        return allReviews;
         }
-
+        case CREATE_REVIEW: {
+            const newState = { ...state }
+            newState[action.spot.id] = action.spot
+            return newState
+        }
+        case READ_REVIEW: {
+            const newState = { ...state }
+            newState[action.spotById.id] = action.spotById
+            return newState
+        }
+        case UPDATE_REVIEW: {
+            const newState = { ...state }
+            newState[action.spot.id] = action.spot
+            return newState
+        }
+        case DELETE_REVIEW: {
+            const newState = { ...state }
+            delete newState[action.spotId]
+            return newState
+        }
         default:
             return state;
     };

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { deleteASpot, fetchSpotById } from "../../store/spots";
+import EditSpotModal from "../EditSpotModal";
 
 
 const SpotDetailsCard = () => {
@@ -43,6 +44,7 @@ const SpotDetailsCard = () => {
             <p>{spot.description}</p>
             <p>{spot.price}</p>
             <button onClick={handleDelete}>Delete</button>
+            <EditSpotModal />
         </>
     )
 }

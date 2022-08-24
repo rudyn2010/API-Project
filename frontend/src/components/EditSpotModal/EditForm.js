@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 // import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-// import { useHistory } from "react-router-dom";
-import { createASpot } from "../../store/spots";
+
+import { updateASpot } from "../../store/spots";
 
 const EditSpotForm = () => {
 
     const dispatch = useDispatch();
-    //const history = useHistory();
 
-    const [ address, setAddress ] = useState("");
-    const [ city, setCity ] = useState("");
-    const [ state, setState ] = useState("");
-    const [ country, setCountry ] = useState("");
-    const [ lat, setLat ] = useState("");
-    const [ lng, setLng ] = useState("");
-    const [ name, setName ] = useState("");
-    const [ description, setDescription ] = useState("");
-    const [ price, setPrice ] = useState("");
+    const { spotId } = useParams();
+    const spots = useSelector((state) => state.spots);
+    const spot = spots[spotId];
+
+    const [ address, setAddress ] = useState(spot?.address);
+    const [ city, setCity ] = useState(spot?.city);
+    const [ state, setState ] = useState(spot?.state);
+    const [ country, setCountry ] = useState(spot?.country);
+    const [ lat, setLat ] = useState(spot?.lat);
+    const [ lng, setLng ] = useState(spot?.lng);
+    const [ name, setName ] = useState(spot?.name);
+    const [ description, setDescription ] = useState(spot?.description);
+    const [ price, setPrice ] = useState(spot?.price);
 
     //slice for errors
     const [ errors, setErrors ] = useState([]);
@@ -58,7 +62,7 @@ const EditSpotForm = () => {
         }
 
         setErrors([]);
-        dispatch(updateASpot(spotData));
+        dispatch(updateASpot({ spotId, spotData }));
 
     }
 

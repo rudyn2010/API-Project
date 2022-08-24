@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { fetchSpots } from "../../store/spots";
+import SpotCard from "../SpotCard";
 
 
 const SpotsShow = () => {
@@ -12,7 +13,7 @@ const SpotsShow = () => {
 
     const displaySpots = spots.map((spot) => (
         <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-            <div>{spot.name}</div>
+            <SpotCard spot={spot} />
         </NavLink>
     ))
 
@@ -30,10 +31,10 @@ const SpotsShow = () => {
 
     return (
         <>
-            <h2>Spots Grid</h2>
-            <div>
-                {/* {probably some function to render my spots} */}
-                {displaySpots}
+            <div className="spot-show-main-container">
+                <div>
+                    {displaySpots}
+                </div>
             </div>
         </>
     )

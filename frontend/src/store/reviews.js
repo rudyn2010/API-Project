@@ -4,7 +4,6 @@ import { csrfFetch } from "./csrf";
 //get all
 const LOAD_REVIEWS = 'reviews/getReviews';
 const CREATE_REVIEW = 'reviews/createReview';
-//get one by id
 const READ_REVIEW = 'reviews/readReview';
 const UPDATE_REVIEW = 'reviews/updateReview';
 const DELETE_REVIEW = 'reviews/deleteReview';

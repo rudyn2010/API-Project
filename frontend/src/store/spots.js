@@ -4,7 +4,6 @@ import { csrfFetch } from "./csrf";
 //get all
 const LOAD_SPOTS = 'spots/getSpots';
 const CREATE_SPOT = 'spots/createSpot';
-//for getting a specific one by id
 const READ_SPOT = 'spots/readSpot';
 const UPDATE_SPOT = 'spots/updateSpot';
 const DELETE_SPOT = 'spots/deleteSpot';

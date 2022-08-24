@@ -1,0 +1,23 @@
+
+.oxygen-logo-profile-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-name-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.fa-brands {
+    color: #FF385C;
+}
+
+.oxygenbnb-title {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    color: #FF385C;
+}

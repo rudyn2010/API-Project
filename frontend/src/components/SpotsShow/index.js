@@ -17,19 +17,15 @@ const SpotsShow = () => {
         <NavLink key={spot.id} to={`/spots/${spot.id}`}>
             <SpotCard spot={spot} />
         </NavLink>
-    ))
+    ));
 
-    //template for useEffect, anon function into a return with a dependancy array
     useEffect(() => {
-
         dispatch(fetchSpots());
-
     }, [ dispatch ]);
 
-    //conditionally rendering
     if (!spots) {
         return null
-    }
+    };
 
     return (
         <>
@@ -37,11 +33,7 @@ const SpotsShow = () => {
                     {displaySpots}
             </div>
         </>
-    )
+    );
 };
 
 export default SpotsShow;
-
-// export default SportShow = () => {
-
-// }

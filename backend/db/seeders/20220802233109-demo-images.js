@@ -36,6 +36,20 @@ const images = [
     previewImage: true,
     url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-599112931775380314/original/5fa486d2-df0f-4b44-88ce-c3590e3be46d.jpeg?im_w=1200",
   },
+  {
+    userId: 2,
+    spotId: 6,
+    reviewId: null,
+    previewImage: true,
+    url: "https://cdn.vox-cdn.com/thumbor/saCTa5pnMNGETrEG2uhAf8ZHJdI=/0x0:7360x4912/920x613/filters:focal(3208x2597:4384x3773):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/60127725/shutterstock_1109460509.0.jpg",
+  },
+  {
+    userId: 6,
+    spotId: 7,
+    reviewId: null,
+    previewImage: true,
+    url: "https://a0.muscache.com/im/pictures/d7e9ec73-f907-493d-83ed-1d89ad92fb5e.jpg?im_w=1200",
+  },
 ];
 
 module.exports = {

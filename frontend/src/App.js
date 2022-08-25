@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-// import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-// import Navigation from "./components/Navigation";
+
 import SpotsShow from "./components/SpotsShow";
 import SpotDetailsCard from "./components/SpotDetailCard";
 import NewNavBar from "./components/NewNavBar";
 import CurrentUserSpotsShow from "./components/CurrentUserSpotsShow";
+import CurrentUserReviewsShow from "./components/CurrentUserRevShow";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +30,9 @@ function App() {
           </Route>
           <Route path="/your-listings">
             <CurrentUserSpotsShow />
+          </Route>
+          <Route path="/your-reviews">
+            <CurrentUserReviewsShow />
           </Route>
           <Route>
             <h1>Page Not Found</h1>

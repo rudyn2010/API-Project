@@ -41,7 +41,9 @@ function ProfileButton({ user }) {
           <li>
             <NavLink to="/your-listings">Your Listings</NavLink>
           </li>
-          {/* CHECK: */}
+          <li>
+            <NavLink to="/your-reviews">Your Reviews</NavLink>
+          </li>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>

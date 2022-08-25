@@ -71,13 +71,23 @@ export const createAReview = () => async (dispatch) => {
 };
 
 export const fetchReviewBySpotId = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
     if (response.ok) {
         const data = await response.json();
         dispatch(actionReadReview(data.Reviews));
     };
 };
+
+export const fetchReviewsOfCurrUser = () => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/current`);
+
+    if (response.ok) {
+        const data = await response.json();
+        console.log("IM HERE L87:", data)
+        dispatch(actionReadReview(data.Reviews));
+    }
+}
 
 // export const updateAReview = ({reviewId, reviewData}) => async (dispatch) => {
 //     const response = await csrfFetch(`/api/spots/${reviewId}`, {
@@ -119,22 +129,25 @@ const reviewsReducer = ( state = initialState, action ) => {
         }
         case CREATE_REVIEW: {
             const newState = { ...state }
-            newState[action.spot.id] = action.spot
+            newState[action.review.id] = action.review
             return newState
         }
+        //Read reviews returns an array -> normalize forEach
         case READ_REVIEW: {
-            const newState = { ...state }
-            newState[action.spotById.id] = action.spotById
+            const newState = {}
+            action.reviews.forEach( (review) => {
+                newState[review.id] = review
+            })
             return newState
         }
-        case UPDATE_REVIEW: {
-            const newState = { ...state }
-            newState[action.spot.id] = action.spot
-            return newState
-        }
+        // case UPDATE_REVIEW: {
+        //     const newState = { ...state }
+        //     newState[action.spot.id] = action.spot
+        //     return newState
+        // }
         case DELETE_REVIEW: {
             const newState = { ...state }
-            delete newState[action.spotId]
+            delete newState[action.reviewId]
             return newState
         }
         default:

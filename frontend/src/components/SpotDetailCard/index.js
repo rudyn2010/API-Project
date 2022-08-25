@@ -18,6 +18,8 @@ const SpotDetailsCard = () => {
     const spots = useSelector((state) => state.spots);
     const spot = spots[spotId]
 
+    console.log("Im HEREERRE:", spots)
+
     // const sessionUser = useSelector((state) => state.session.user);
 
     const handleDelete = async (e) => {

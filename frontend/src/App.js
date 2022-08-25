@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import SpotsShow from "./components/SpotsShow";
 import SpotDetailsCard from "./components/SpotDetailCard";
 import NewNavBar from "./components/NewNavBar";
+import CurrentUserSpotsShow from "./components/CurrentUserSpotsShow";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,9 +28,9 @@ function App() {
           <Route path="/spots/:spotId">
             <SpotDetailsCard />
           </Route>
-          {/* <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
+          <Route path="/your-listings">
+            <CurrentUserSpotsShow />
+          </Route>
           <Route>
             <h1>Page Not Found</h1>
           </Route>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -11,28 +11,25 @@ import SpotCard from "../SpotCard";
 const SpotsShow = () => {
 
     const dispatch = useDispatch();
+    const [ isLoaded, setIsLoaded ] = useState(false);
+
     const spots = useSelector(state => Object.values(state.spots));
 
     const displaySpots = spots.map((spot) => (
         <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-            <SpotCard spot={spot} />
+            <SpotCard spot={ spot } />
         </NavLink>
     ));
 
     useEffect(() => {
-        dispatch(fetchSpots());
+        dispatch(fetchSpots())
+        .then(() => setIsLoaded(true));
     }, [ dispatch ]);
 
-    if (!spots) {
-        return null
-    };
-
-    return (
-        <>
-            <div className="spot-show-main-container">
-                    {displaySpots}
-            </div>
-        </>
+    return isLoaded && (
+        <div className="spot-show-main-container">
+            {displaySpots}
+        </div>
     );
 };
 

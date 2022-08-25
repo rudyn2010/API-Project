@@ -29,15 +29,17 @@ const actionReadReview = () => {
     };
 };
 
-const actionUpdateReview = () => {
-    return {
-        type: UPDATE_REVIEW
-    };
-};
+//Update not needed - for now...
+// const actionUpdateReview = () => {
+//     return {
+//         type: UPDATE_REVIEW
+//     };
+// };
 
-const actionDeleteReview = () => {
+const actionDeleteReview = (reviewId) => {
     return {
-        type: DELETE_REVIEW
+        type: DELETE_REVIEW,
+        reviewId
     };
 };
 
@@ -67,30 +69,30 @@ export const createAReview = () => async (dispatch) => {
         dispatch(actionCreateReview(review));
     };
 };
-//Read:
-export const fetchReviewById = (Id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/reviews/${Id}`)
+
+export const fetchReviewBySpotId = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
 
     if (response.ok) {
-        const review = await response.json();
-        dispatch(actionReadReview(review));
+        const data = await response.json();
+        dispatch(actionReadReview(data.Reviews));
     };
 };
 
-export const updateAReview = ({reviewId, reviewData}) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${reviewId}`, {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reviewData)
-    });
+// export const updateAReview = ({reviewId, reviewData}) => async (dispatch) => {
+//     const response = await csrfFetch(`/api/spots/${reviewId}`, {
+//         method: "PUT",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(reviewData)
+//     });
 
-    if (response.ok) {
-        const review = await response.json();
-        dispatch(actionUpdateReview(review));
-    };
-};
+//     if (response.ok) {
+//         const review = await response.json();
+//         dispatch(actionUpdateReview(review));
+//     };
+// };
 //TODO:
 export const deleteAReview = (reviewId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${reviewId}`, {

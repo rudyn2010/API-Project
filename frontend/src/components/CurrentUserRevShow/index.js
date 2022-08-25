@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { fetchReviewsOfCurrUser } from "../../store/reviews";
+import ReviewsCard from "../ReviewsCard";
 
 
 
@@ -20,16 +21,7 @@ const CurrentUserReviewsShow = () => {
     }, [ dispatch ]);
 
     const reviewDisplay = reviews.map((review) => (
-        <div key={review.id} className="review-main-container">
-            <div className="review-inner-container">
-                <div className="review-text-desc">
-                    {review.review}
-                </div>
-                <div className="review-star-number">
-                    {review.stars}
-                </div>
-            </div>
-        </div>
+        <ReviewsCard key={review?.id} review={ review } />
     ))
 
 

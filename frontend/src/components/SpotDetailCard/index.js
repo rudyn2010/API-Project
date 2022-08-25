@@ -6,6 +6,7 @@ import { deleteASpot, fetchSpotById } from "../../store/spots";
 import EditSpotModal from "../EditSpotModal";
 import { fetchReviewBySpotId } from "../../store/reviews";
 import ReviewFormModal from "../ReviewModal";
+import ReviewsCard from "../ReviewsCard";
 
 
 const SpotDetailsCard = () => {
@@ -43,32 +44,22 @@ const SpotDetailsCard = () => {
     };
 
     const reviewDisplay = reviews.map((review) => (
-        <div key={review.id} className="review-main-container">
-            <div className="review-inner-container">
-                <div className="review-text-desc">
-                    {review.review}
-                </div>
-                <div className="review-star-number">
-                    {review.stars}
-                </div>
-            </div>
-        </div>
+        <ReviewsCard key={ review?.id } review={ review } />
     ))
 
     return isLoaded && (
         <>
             <h2>Example Spot Details:</h2>
+            <EditSpotModal />
+            <button onClick={handleDelete}>Delete</button>
             <p>{spot.address}</p>
             <p>{spot.name}</p>
             <p>{spot.description}</p>
             <p>{spot.price}</p>
+            <p>------------------------</p>
+            <ReviewFormModal />
             <h3>Reviews Section:</h3>
             {reviewDisplay}
-            {/* <p>{reviews[0]?.stars}</p>
-            <p>{reviews[0]?.review}</p> */}
-            <button onClick={handleDelete}>Delete</button>
-            <EditSpotModal />
-            <ReviewFormModal />
         </>
     )
 }

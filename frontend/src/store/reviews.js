@@ -105,7 +105,7 @@ export const fetchReviewsOfCurrUser = () => async (dispatch) => {
 // };
 //TODO:
 export const deleteAReview = (reviewId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${reviewId}`, {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "DELETE",
     });
 

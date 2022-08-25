@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { deleteASpot, fetchSpotById } from "../../store/spots";
 import EditSpotModal from "../EditSpotModal";
 import { fetchReviewBySpotId } from "../../store/reviews";
+import ReviewFormModal from "../ReviewModal";
 
 
 const SpotDetailsCard = () => {
@@ -23,7 +24,6 @@ const SpotDetailsCard = () => {
 
     const reviews = useSelector((state) => Object.values(state.reviews));
 
-    console.log("IM HEREERERER:", reviews)
     // const sessionUser = useSelector((state) => state.session.user);
 
     const handleDelete = async (e) => {
@@ -42,6 +42,19 @@ const SpotDetailsCard = () => {
         return null;
     };
 
+    const reviewDisplay = reviews.map((review) => (
+        <div key={review.id} className="review-main-container">
+            <div className="review-inner-container">
+                <div className="review-text-desc">
+                    {review.review}
+                </div>
+                <div className="review-star-number">
+                    {review.stars}
+                </div>
+            </div>
+        </div>
+    ))
+
     return isLoaded && (
         <>
             <h2>Example Spot Details:</h2>
@@ -49,10 +62,13 @@ const SpotDetailsCard = () => {
             <p>{spot.name}</p>
             <p>{spot.description}</p>
             <p>{spot.price}</p>
-            <p>{reviews[0]?.stars}</p>
-            <p>{reviews[0]?.review}</p>
+            <h3>Reviews Section:</h3>
+            {reviewDisplay}
+            {/* <p>{reviews[0]?.stars}</p>
+            <p>{reviews[0]?.review}</p> */}
             <button onClick={handleDelete}>Delete</button>
             <EditSpotModal />
+            <ReviewFormModal />
         </>
     )
 }

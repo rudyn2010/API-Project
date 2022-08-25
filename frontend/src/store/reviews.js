@@ -17,9 +17,10 @@ const actionLoadReviews = (reviews) => {
     };
 };
 
-const actionCreateReview = () => {
+const actionCreateReview = (review) => {
     return {
-        type: CREATE_REVIEW
+        type: CREATE_REVIEW,
+        review
     };
 };
 
@@ -55,13 +56,13 @@ export const fetchReviews = () => async (dispatch) => {
     };
 };
 
-export const createAReview = () => async (dispatch) => {
-    const response = await csrfFetch("/api/reviews", {
+export const createAReviewForSpot = ({reviewData, spotId}) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify()
+        body: JSON.stringify(reviewData)
     });
 
     if (response.ok) {
@@ -84,7 +85,6 @@ export const fetchReviewsOfCurrUser = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log("IM HERE L87:", data)
         dispatch(actionReadReview(data.Reviews));
     }
 }

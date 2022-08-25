@@ -13,22 +13,29 @@ const CurrentUserReviewsShow = () => {
     const reviews = useSelector((state) => Object.values(state.reviews));
 
     //styling for reviews
-    console.log("IM HERE L16:", reviews)
 
     useEffect(() => {
         dispatch(fetchReviewsOfCurrUser())
         .then(() => setIsLoaded(true));
     }, [ dispatch ]);
 
+    const reviewDisplay = reviews.map((review) => (
+        <div key={review.id} className="review-main-container">
+            <div className="review-inner-container">
+                <div className="review-text-desc">
+                    {review.review}
+                </div>
+                <div className="review-star-number">
+                    {review.stars}
+                </div>
+            </div>
+        </div>
+    ))
+
 
     return  isLoaded && (
         <>
-            {reviews.map((review) => (
-                <div>
-                    {review?.stars}
-                    {review?.review}
-                </div>
-            ))}
+            {reviewDisplay}
         </>
     )
 

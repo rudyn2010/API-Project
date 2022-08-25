@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import { deleteASpot, fetchSpotById } from "../../store/spots";
 import EditSpotModal from "../EditSpotModal";
+import { fetchReviewBySpotId } from "../../store/reviews";
 
 
 const SpotDetailsCard = () => {
@@ -18,8 +19,6 @@ const SpotDetailsCard = () => {
     const spots = useSelector((state) => state.spots);
     const spot = spots[spotId]
 
-    console.log("Im HEREERRE:", spots)
-
     // const sessionUser = useSelector((state) => state.session.user);
 
     const handleDelete = async (e) => {
@@ -32,6 +31,7 @@ const SpotDetailsCard = () => {
 
     useEffect(() => {
         dispatch(fetchSpotById(spotId));
+        dispatch(fetchReviewBySpotId(spotId));
     }, [ dispatch, spotId ]);
 
     if (!spot) {

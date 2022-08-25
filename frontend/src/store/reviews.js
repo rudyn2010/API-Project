@@ -23,9 +23,10 @@ const actionCreateReview = () => {
     };
 };
 
-const actionReadReview = () => {
+const actionReadReview = (reviews) => {
     return {
-        type: READ_REVIEW
+        type: READ_REVIEW,
+        reviews
     };
 };
 
@@ -42,7 +43,6 @@ const actionDeleteReview = (reviewId) => {
         reviewId
     };
 };
-
 
 //Thunks:
 export const fetchReviews = () => async (dispatch) => {

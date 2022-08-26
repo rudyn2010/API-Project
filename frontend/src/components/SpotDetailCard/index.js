@@ -54,8 +54,6 @@ const SpotDetailsCard = () => {
     const reviewDisplay = reviews.map((review) => (
         <ReviewsCard key={ review?.id } review={ review } />
     ))
-     console.log("SPOT DETAILS:", spot)
-     console.log(spot.Images)
 
     return isLoaded && (
         <>
@@ -77,7 +75,10 @@ const SpotDetailsCard = () => {
                 </div>
             </div>
             <div className="image-display-container">
-                <img src={spot?.previewImage} alt="Img Not Found"/>
+                { spot?.Images && (
+                        <img src={spot?.Images[0]?.url} alt="Img Not Found"/>
+                    )
+                }
             </div>
         </div>
         <ReviewFormModal />

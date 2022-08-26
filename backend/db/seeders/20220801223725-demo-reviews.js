@@ -8,10 +8,10 @@ const sampleReviews = [
     spotId: 4
   },
   {
-    review: 'Sleeping on the same field where Aaron played is magical',
+    review: 'Sleeping under the Bean was very cold',
     stars: 5,
     userId: 1,
-    spotId: 2
+    spotId: 6
   },
   {
     review: 'It was lit',

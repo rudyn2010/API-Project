@@ -6,6 +6,7 @@ function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
+  const [ demoUser, setDemoUser ] = useState("");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
@@ -46,6 +47,12 @@ function LoginForm() {
           />
         </label>
         <button type="submit">Continue</button>
+        <div className="demo-user-main-container">
+            <button className="demo-button" type="submit" onClick={() => {
+              setCredential("Demo-lition")
+              setPassword("password")
+          }}>DEMO USER</button>
+        </div>
       </form>
     </>
   );

@@ -1,0 +1,30 @@
+.spot-detail-main {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.spot-detail-title-widget {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.spot-name-text {
+    font-size: x-large;
+    font-weight: 400;
+}
+
+.spot-detail-bar {
+    display: flex;
+    justify-content: flex-start;
+    font-size: smaller;
+    gap: 10px;
+}
+
+.spots-reviews-container {
+    display: flex;
+    justify-content: center;
+    border-top: lightgray 1px solid;
+    border-bottom: black 1px solid;
+}

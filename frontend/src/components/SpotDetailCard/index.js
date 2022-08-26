@@ -7,6 +7,7 @@ import EditSpotModal from "../EditSpotModal";
 import { fetchReviewBySpotId } from "../../store/reviews";
 import ReviewFormModal from "../ReviewModal";
 import ReviewsCard from "../ReviewsCard";
+import "./SpotDetailCard.css"
 
 
 const SpotDetailsCard = () => {
@@ -20,12 +21,19 @@ const SpotDetailsCard = () => {
     spotId = parseInt(spotId);
 
     //Object.values => potentially to key into it later
-    const spots = useSelector((state) => state.spots);
-    const spot = spots[spotId]
-
+    const sessionUser = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => Object.values(state.reviews));
+    const spots = useSelector((state) => state.spots);
 
-    // const sessionUser = useSelector((state) => state.session.user);
+    const spot = spots[spotId]
+    let currentUser;
+
+    if (sessionUser && spot) {
+        if (sessionUser.id === spot.ownerId) {
+            currentUser = true;
+        }
+        else currentUser = false;
+    }
 
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -39,28 +47,43 @@ const SpotDetailsCard = () => {
         .then(() => setIsLoaded(true));
     }, [ dispatch, spotId ]);
 
-    if (!spot) {
-        return null;
-    };
+    // if (!spot) {
+    //     return null;
+    // };
 
     const reviewDisplay = reviews.map((review) => (
         <ReviewsCard key={ review?.id } review={ review } />
     ))
      console.log("SPOT DETAILS:", spot)
+     console.log(spot.Images)
 
     return isLoaded && (
         <>
-            <h2>Example Spot Details:</h2>
-            <EditSpotModal />
-            <button onClick={handleDelete}>Delete</button>
-            <p>{spot.address}</p>
-            <p>{spot.name}</p>
-            <p>{spot.description}</p>
-            <p>{spot.price}</p>
-            <p>------------------------</p>
-            <ReviewFormModal />
-            <h3>Reviews Section:</h3>
+            { currentUser && (
+                    <>
+                    <EditSpotModal />
+                    <button onClick={handleDelete}>Delete</button>
+                    </>
+                )
+            }
+        <div className="spot-detail-main">
+            <div className="spot-detail-title-widget">
+                <div className="spot-name-text">{spot.description}: {spot.name}</div>
+                <div className="spot-detail-bar">
+                    <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
+                    <div>{spot.avgStarRating}</div>
+                    <div>{spot.numReviews} review(s)</div>
+                    <div>{spot.city}, {spot.state}, {spot.country}</div>
+                </div>
+            </div>
+            <div className="image-display-container">
+                <img src={spot?.previewImage} alt="Img Not Found"/>
+            </div>
+        </div>
+        <ReviewFormModal />
+        <div className="spots-reviews-container">
             {reviewDisplay}
+        </div>
         </>
     )
 }

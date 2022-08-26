@@ -25,16 +25,8 @@ const SpotForm = () => {
 
     useEffect(() => {
         let errors = [];
-        if (address === "") errors.push('Street address is required');
-        if (city === "") errors.push('City is required');
-        if (state === "") errors.push('State is required');
-        if (country === "") errors.push('Country is required');
-        if (lat === "") errors.push('Latitude is not valid');
-        if (lng === "") errors.push('Longitude is not valid');
-        if (name === "") errors.push('Name is required');
+        if (description.length > 255) errors.push('Description must be less than 255 characters');
         if (name.length > 50) errors.push('Name must be less than 50 characters');
-        if (description === "") errors.push('Description is required');
-        if (price === "") errors.push('Price per day is required');
         setErrors(errors);
     }, [ address, city, state, country, lat, lng, name, description, price ]);
 
@@ -75,6 +67,7 @@ const SpotForm = () => {
             name="address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -84,6 +77,7 @@ const SpotForm = () => {
             name="city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -93,6 +87,7 @@ const SpotForm = () => {
             name="state"
             value={state}
             onChange={(e) => setState(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -102,6 +97,7 @@ const SpotForm = () => {
             name="country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -111,6 +107,7 @@ const SpotForm = () => {
             name="lat"
             value={lat}
             onChange={(e) => setLat(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -120,6 +117,7 @@ const SpotForm = () => {
             name="lng"
             value={lng}
             onChange={(e) => setLng(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -129,6 +127,7 @@ const SpotForm = () => {
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -138,6 +137,7 @@ const SpotForm = () => {
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -147,6 +147,7 @@ const SpotForm = () => {
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
           />
         </label>
         <button

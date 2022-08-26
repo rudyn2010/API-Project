@@ -23,15 +23,25 @@ const ReviewsCard = ({ review }) => {
         await dispatch(deleteAReview(review.id));
     };
 
-
     return (
-        <div key={review.id} className="review-main-container">
-            <div className="review-inner-container">
-                <div className="review-text-desc">
-                    {review.review}
+        <div className="review-main-container">
+            <div className="review-header">
+                <div className="review-user-info">
+                    <i className="fa-solid fa-user fa-2xl"></i>
+                    <div className="name-date">
+                        <div className="reviewer-name">Name Here</div>
+                        <div className="reviewer-date">Test Date '22</div>
+                    </div>
                 </div>
-                <div className="review-star-number">
-                    {review.stars}
+
+                <div className="star-review-display">
+                    <div className="star-sharp"><i className="fa-solid fa-star fa-sm"></i></div>
+                    <div className="review-rating">{review?.stars}</div>
+                </div>
+            </div>
+            <div className="review-inner-container">
+                <div className="review-text">
+                    {review.review}
                 </div>
             </div>
             {currentUser && (

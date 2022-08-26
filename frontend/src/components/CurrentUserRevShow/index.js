@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+
+
 import { fetchReviewsOfCurrUser } from "../../store/reviews";
 import ReviewsCard from "../ReviewsCard";
-
-
+import "./CurrentUserRevShow.css"
 
 const CurrentUserReviewsShow = () => {
 
@@ -21,13 +22,20 @@ const CurrentUserReviewsShow = () => {
     }, [ dispatch ]);
 
     const reviewDisplay = reviews.map((review) => (
-        <ReviewsCard key={review?.id} review={ review } />
+        <NavLink key={review.id} to={`/spots/${review.spotId}`}>
+            <ReviewsCard review={ review } />
+        </NavLink>
     ))
 
 
     return  isLoaded && (
         <>
-            {reviewDisplay}
+            <div className="your-listings-display">
+                <h1 className="reviews-page-text">Your Reviews</h1>
+            </div>
+            <div className="spot-show-main-container">
+                {reviewDisplay}
+            </div>
         </>
     )
 

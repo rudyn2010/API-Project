@@ -1,3 +1,9 @@
+.your-property-title-text {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-weight: bold;
+    /* color: #FF385C; */
+}
+
 .your-listings-display {
     display: flex;
     justify-content: center;

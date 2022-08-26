@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
 import SpotsShow from "./components/SpotsShow";
@@ -28,14 +28,14 @@ function App() {
           <Route path="/spots/:spotId">
             <SpotDetailsCard />
           </Route>
-          <Route path="/your-listings">
+          <Route path="/your-listings" exact>
             <CurrentUserSpotsShow />
           </Route>
-          <Route path="/your-reviews">
+          <Route path="/your-reviews" exact>
             <CurrentUserReviewsShow />
           </Route>
           <Route>
-            <h1>Page Not Found</h1>
+            <Redirect to="/"/>
           </Route>
         </Switch>
       )}

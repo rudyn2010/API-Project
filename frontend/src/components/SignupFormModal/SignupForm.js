@@ -35,7 +35,7 @@ function SignupForm() {
   return (
     <form onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
         First Name

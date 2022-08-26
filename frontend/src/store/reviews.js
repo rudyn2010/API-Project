@@ -17,9 +17,10 @@ const actionLoadReviews = (reviews) => {
     };
 };
 
-const actionCreateReview = () => {
+const actionCreateReview = (review) => {
     return {
-        type: CREATE_REVIEW
+        type: CREATE_REVIEW,
+        review
     };
 };
 
@@ -55,13 +56,13 @@ export const fetchReviews = () => async (dispatch) => {
     };
 };
 
-export const createAReview = () => async (dispatch) => {
-    const response = await csrfFetch("/api/reviews", {
+export const createAReviewForSpot = ({reviewData, spotId}) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify()
+        body: JSON.stringify(reviewData)
     });
 
     if (response.ok) {
@@ -71,13 +72,22 @@ export const createAReview = () => async (dispatch) => {
 };
 
 export const fetchReviewBySpotId = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
     if (response.ok) {
         const data = await response.json();
         dispatch(actionReadReview(data.Reviews));
     };
 };
+
+export const fetchReviewsOfCurrUser = () => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/current`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionReadReview(data.Reviews));
+    }
+}
 
 // export const updateAReview = ({reviewId, reviewData}) => async (dispatch) => {
 //     const response = await csrfFetch(`/api/spots/${reviewId}`, {
@@ -95,7 +105,7 @@ export const fetchReviewBySpotId = (spotId) => async (dispatch) => {
 // };
 //TODO:
 export const deleteAReview = (reviewId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${reviewId}`, {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "DELETE",
     });
 
@@ -119,22 +129,25 @@ const reviewsReducer = ( state = initialState, action ) => {
         }
         case CREATE_REVIEW: {
             const newState = { ...state }
-            newState[action.spot.id] = action.spot
+            newState[action.review.id] = action.review
             return newState
         }
+        //Read reviews returns an array -> normalize forEach
         case READ_REVIEW: {
-            const newState = { ...state }
-            newState[action.spotById.id] = action.spotById
+            const newState = {}
+            action.reviews.forEach( (review) => {
+                newState[review.id] = review
+            })
             return newState
         }
-        case UPDATE_REVIEW: {
-            const newState = { ...state }
-            newState[action.spot.id] = action.spot
-            return newState
-        }
+        // case UPDATE_REVIEW: {
+        //     const newState = { ...state }
+        //     newState[action.spot.id] = action.spot
+        //     return newState
+        // }
         case DELETE_REVIEW: {
             const newState = { ...state }
-            delete newState[action.spotId]
+            delete newState[action.reviewId]
             return newState
         }
         default:

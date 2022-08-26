@@ -23,13 +23,11 @@ const ReviewsCard = ({ review }) => {
         await dispatch(deleteAReview(review.id));
     };
 
-    console.log("REVIEW HERE:", review)
-
     return (
         <div className="review-main-container">
             <div className="review-header">
                 <div className="review-user-info">
-                    <i class="fa-solid fa-user fa-2xl"></i>
+                    <i className="fa-solid fa-user fa-2xl"></i>
                     <div className="name-date">
                         <div className="reviewer-name">Name Here</div>
                         <div className="reviewer-date">Test Date '22</div>

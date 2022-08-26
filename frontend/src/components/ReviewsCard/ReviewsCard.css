@@ -7,6 +7,10 @@
 
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
 
 .review-header {
     height: 80px;

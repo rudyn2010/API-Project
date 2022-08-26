@@ -46,6 +46,7 @@ const SpotDetailsCard = () => {
     const reviewDisplay = reviews.map((review) => (
         <ReviewsCard key={ review?.id } review={ review } />
     ))
+     console.log("SPOT DETAILS:", spot)
 
     return isLoaded && (
         <>

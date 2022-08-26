@@ -22,7 +22,9 @@ const CurrentUserReviewsShow = () => {
     }, [ dispatch ]);
 
     const reviewDisplay = reviews.map((review) => (
-        <ReviewsCard key={review?.id} review={ review } />
+        <NavLink key={review.id} to={`/spots/${review.spotId}`}>
+            <ReviewsCard review={ review } />
+        </NavLink>
     ))
 
 

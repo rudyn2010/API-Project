@@ -65,11 +65,12 @@ export const createASpot = (spotData) => async (dispatch) => {
         },
         body: JSON.stringify(spotData)
     });
-
     if (response.ok) {
         const spot = await response.json();
         dispatch(actionCreateSpot(spot));
+        return spot;
     };
+    return response;
 };
 //Read:
 export const fetchSpotById = (spotId) => async (dispatch) => {
@@ -104,6 +105,7 @@ export const deleteASpot = (spotId) => async (dispatch) => {
     if (response.ok) {
         dispatch(actionDeleteSpot(spotId));
     }
+    return response;
 }
 
 export const getCurrentUsersSpot = () => async (dispatch) => {
@@ -112,6 +114,20 @@ export const getCurrentUsersSpot = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(actionLoadSpots(data.Spots))
+    }
+}
+
+//EXTRA IMAGE FUNCTIONALITY
+export const addImageToSpot = (spotId, imgUrl) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/images`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(imgUrl)
+    })
+    if (response.ok) {
+        dispatch(fetchSpotById(spotId))
     }
 }
 

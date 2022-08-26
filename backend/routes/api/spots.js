@@ -148,7 +148,7 @@ router.get('/:spotId', async (req, res, next) => {
         include: [
             {
                 model: Image,
-                attributes: ["id", ["spotId", "imageableId"], "url"]
+                attributes: ["id", ["spotId", "imageableId"], "previewImage" ,"url"]
             },
             {
                 model: User,
@@ -235,7 +235,7 @@ router.get('/', validateQueryParams, async (req, res, next) => {
 
 //Post an Image to a Spot based on the Spot's ID
 router.post('/:spotId/images', requireAuth, validateImage, async (req, res, next) => {
-    const { url } = req.body;
+    const { url, previewImage } = req.body;
     const { spotId } = req.params;
 
     const spotById = await Spot.findByPk(spotId);
@@ -248,7 +248,8 @@ router.post('/:spotId/images', requireAuth, validateImage, async (req, res, next
     const newImage = await Image.create({
         url: url,
         spotId: spotId,
-        userId: req.user.id
+        userId: req.user.id,
+        previewImage
     });
     return res.json({
         "id": newImage.id,

@@ -2,8 +2,6 @@ import "./SpotCard.css"
 
 const SpotCard = ({ spot }) => {
 
-    // console.log(spot);
-
     return (
         <div className="spot-card-container">
             <div className="spot-card-img-container">

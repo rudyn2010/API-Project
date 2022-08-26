@@ -27,7 +27,12 @@ const CurrentUserReviewsShow = () => {
 
     return  isLoaded && (
         <>
-            {reviewDisplay}
+            <div className="your-listings-display">
+                <h1>My Reviews</h1>
+            </div>
+            <div className="spot-show-main-container">
+                {reviewDisplay}
+            </div>
         </>
     )
 

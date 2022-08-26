@@ -1,3 +1,36 @@
+.review-main-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    border: black 1px solid;
+
+}
+
+
+.review-header {
+    height: 80px;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-user-info {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.star-review-display {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+
+
 .reviewDelete:hover {
     cursor: pointer;
 }

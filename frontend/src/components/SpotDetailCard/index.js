@@ -37,20 +37,18 @@ const SpotDetailsCard = () => {
         else currentUser = false;
     }
 
-    const handleDelete = async (e) => {
-        e.preventDefault();
-
-        const res = await dispatch(deleteASpot(spotId));
-        if (res) {
-            history.push("/");
-        }
-    };
-
     useEffect(() => {
         dispatch(fetchSpotById(spotId)).then(() =>
         dispatch(fetchReviewBySpotId(spotId)))
         .then(() => setIsLoaded(true));
     }, [ dispatch, spotId ]);
+
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        setIsLoaded(false)
+        await dispatch(deleteASpot(spotId));
+        history.push("/");
+    };
 
     // if (!spot) {
     //     return null;

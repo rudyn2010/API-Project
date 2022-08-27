@@ -117,18 +117,16 @@ export const getCurrentUsersSpot = () => async (dispatch) => {
     }
 }
 
-//EXTRA IMAGE FUNCTIONALITY
+//add Preview Image Feature:
 export const addImageToSpot = (spotId, imgUrl) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: "POST",
-        headers: {
+        header: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(imgUrl)
-    })
-    if (response.ok) {
-        dispatch(fetchSpotById(spotId))
-    }
+    });
+    return response;
 }
 
 //initialState

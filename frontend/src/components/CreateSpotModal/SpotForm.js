@@ -63,6 +63,13 @@ const SpotForm = () => {
 
         history.push(`/spots/${newSpot.id}`)
 
+        setErrors([]);
+        let data = await dispatch(createASpot(spotData));
+        console.log("IM HERE:", data)
+        await dispatch(addImageToSpot(data.id, imgUrlData))
+        if (data) {
+          history.push(`/spots/${data.id}`)
+        }
     }
 
     return (
@@ -116,6 +123,8 @@ const SpotForm = () => {
           <input
             type="number"
             name="lat"
+            min={-90}
+            max={90}
             value={lat}
             onChange={(e) => setLat(e.target.value)}
             required
@@ -126,6 +135,8 @@ const SpotForm = () => {
           <input
             type="number"
             name="lng"
+            min={-180}
+            max={180}
             value={lng}
             onChange={(e) => setLng(e.target.value)}
             required

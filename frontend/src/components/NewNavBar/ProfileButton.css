@@ -1,0 +1,11 @@
+.profile-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 65px;
+    border: lightgray 1px solid;
+    border-radius: 16px;
+    gap: 10px;
+    cursor: pointer;
+}

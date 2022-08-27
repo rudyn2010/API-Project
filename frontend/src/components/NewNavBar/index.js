@@ -30,6 +30,7 @@ const NewNavBar = ({ isLoaded }) => {
       }
 
     return (
+      <div className='splash-page-show'>
         <div className="oxygen-logo-profile-nav">
             <NavLink exact to="/">
                 <div className="logo-name-container">
@@ -41,6 +42,7 @@ const NewNavBar = ({ isLoaded }) => {
                 {isLoaded && sessionLinks}
             </div>
         </div>
+      </div>
     )
 }
 

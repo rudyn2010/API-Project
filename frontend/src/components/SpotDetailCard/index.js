@@ -28,6 +28,8 @@ const SpotDetailsCard = () => {
     const spot = spots[spotId]
     let currentUser;
 
+    console.log("SPOT SPOT DETAIL:", spot)
+
     if (sessionUser && spot) {
         if (sessionUser.id === spot.ownerId) {
             currentUser = true;
@@ -37,8 +39,11 @@ const SpotDetailsCard = () => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        await dispatch(deleteASpot(spotId));
-        history.push("/");
+
+        const res = await dispatch(deleteASpot(spotId));
+        if (res) {
+            history.push("/");
+        }
     };
 
     useEffect(() => {
@@ -66,12 +71,12 @@ const SpotDetailsCard = () => {
             }
         <div className="spot-detail-main">
             <div className="spot-detail-title-widget">
-                <div className="spot-name-text">{spot.description}: {spot.name}</div>
+                <div className="spot-name-text">{spot?.description}: {spot?.name}</div>
                 <div className="spot-detail-bar">
                     <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
-                    <div>{spot.avgStarRating}</div>
-                    <div>{spot.numReviews} review(s)</div>
-                    <div>{spot.city}, {spot.state}, {spot.country}</div>
+                    <div>{spot?.avgStarRating}</div>
+                    <div>{spot?.numReviews} review(s)</div>
+                    <div>{spot?.city}, {spot?.state}, {spot?.country}</div>
                 </div>
             </div>
             <div className="image-display-container">

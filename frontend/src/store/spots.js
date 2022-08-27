@@ -65,7 +65,6 @@ export const createASpot = (spotData) => async (dispatch) => {
         },
         body: JSON.stringify(spotData)
     });
-
     if (response.ok) {
         const spot = await response.json();
         dispatch(actionCreateSpot(spot));

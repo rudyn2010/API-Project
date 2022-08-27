@@ -28,7 +28,7 @@ const SpotForm = () => {
         let errors = [];
         if (description.length > 255) errors.push('Description must be less than 255 characters');
         if (name.length > 50) errors.push('Name must be less than 50 characters');
-        if (!imgUrl.endsWith(".jpg") && !imgUrl.endsWith(".jpeg") && !imgUrl.endsWith(".png")) errors.push('Valid Image Url is required')
+        if (!imgUrl.endsWith(".jpeg") && !imgUrl.endsWith(".png") && !imgUrl.endsWith(".jpg") && !imgUrl.endsWith(".gif")) errors.push('Valid Img Url is required');
         setErrors(errors);
     }, [ address, city, state, country, lat, lng, name, description, price, imgUrl ]);
 
@@ -51,10 +51,17 @@ const SpotForm = () => {
           price
         }
 
-        const imgUrlData = {
+        const imgData = {
           previewImage: true,
           url: imgUrl
         }
+
+        setErrors([]);
+        let newSpot = await dispatch(createASpot(spotData))
+
+        await dispatch(addImageToSpot(newSpot.id, imgData))
+
+        history.push(`/spots/${newSpot.id}`)
 
         setErrors([]);
         let data = await dispatch(createASpot(spotData));
@@ -166,9 +173,9 @@ const SpotForm = () => {
           />
         </label>
         <label>
-          Image Url
+          Preview Image
           <input
-            type="text"
+            type="url"
             name="imgUrl"
             value={imgUrl}
             onChange={(e) => setImgUrl(e.target.value)}

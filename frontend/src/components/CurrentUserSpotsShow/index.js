@@ -29,7 +29,7 @@ const CurrentUserSpotsShow = () => {
             <div className="your-listings-display">
                 <h1 className="your-property-title-text">Your Properties</h1>
             </div>
-            <div className="spot-show-main-container">
+            <div className="your-spot-main-container">
                 {displaySpots}
             </div>
         </>

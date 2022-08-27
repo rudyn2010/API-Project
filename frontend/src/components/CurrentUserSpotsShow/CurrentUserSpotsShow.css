@@ -8,3 +8,11 @@
     display: flex;
     justify-content: center;
 }
+
+.your-spot-main-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px 20px;
+}

@@ -33,7 +33,7 @@ const CurrentUserReviewsShow = () => {
             <div className="your-listings-display">
                 <h1 className="reviews-page-text">Your Reviews</h1>
             </div>
-            <div className="spot-show-main-container">
+            <div className="review-show-main-container">
                 {reviewDisplay}
             </div>
         </>

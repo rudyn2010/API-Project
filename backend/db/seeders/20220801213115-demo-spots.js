@@ -15,26 +15,26 @@ const Spots = [
   },
   {
     ownerId: 1,
-    address: '12 Aaron Rodgers Way',
-    city: 'Green Bay',
-    state: 'Wisconsin',
+    address: '123 The Strip',
+    city: 'Las Vegas',
+    state: 'Nevada',
     country: 'USA',
     lat: 69.99,
     lng: 52.11,
-    name: 'Lambo Field',
-    description: 'Grassy and open area',
+    name: "Fiddler's Green",
+    description: 'Grassy and Open Area',
     price: 345
   },
   {
     ownerId: 4,
     address: '1715 Spruce Street',
-    city: 'Berkeley',
-    state: 'California',
+    city: 'Albany',
+    state: 'New York',
     country: 'USA',
     lat: 89.72,
     lng: 32.0,
-    name: 'Trap House',
-    description: 'A destination for partying and trapping',
+    name: 'The Castle',
+    description: 'A destination for kings and queens!',
     price: 5
   },
   {
@@ -62,7 +62,7 @@ const Spots = [
     price: 123
   },
   {
-    ownerId: 2,
+    ownerId: 1,
     address: '321 Bean Street',
     city: 'Chicago',
     state: 'Illinois',
@@ -74,7 +74,7 @@ const Spots = [
     price: 10
   },
   {
-    ownerId: 6,
+    ownerId: 1,
     address: '845 S Wall Maria',
     city: 'Shiganshina',
     state: 'District',
@@ -84,7 +84,19 @@ const Spots = [
     name: 'The Cottage',
     description: 'A nice and cozy little cottage',
     price: 25
-  }
+  },
+  {
+    ownerId: 1,
+    address: '5454 Seto Fumi Way',
+    city: 'Seattle',
+    state: 'Washington',
+    country: 'USA',
+    lat: 69.99,
+    lng: 52.11,
+    name: "Aukey",
+    description: 'Rice Seasoning',
+    price: 34
+  },
 ]
 
 module.exports = {

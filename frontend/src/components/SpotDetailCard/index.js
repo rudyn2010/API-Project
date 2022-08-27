@@ -67,7 +67,7 @@ const SpotDetailsCard = () => {
                 { currentUser && (
                     <div className="edit-delete-container">
                         <EditSpotModal />
-                        <button onClick={(e) => handleDelete(e)}>Delete</button>
+                        <div className="delete-button" onClick={(e) => handleDelete(e)}>Delete</div>
                     </div>
                     )
                 }

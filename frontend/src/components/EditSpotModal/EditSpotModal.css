@@ -1,8 +1,8 @@
-.review-button {
+.edit-button {
     display: flex;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     height: 30px;
-    width: 150px;
+    width: 100px;
     justify-content: center;
     align-items: center;
     cursor: pointer;

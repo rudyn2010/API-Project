@@ -47,6 +47,19 @@
     gap: 10px;
 }
 
+.delete-button {
+    display: flex;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    height: 30px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background-color: #FF385C;
+}
+
 .image-display-container {
     vertical-align: bottom;
     height: 550px;

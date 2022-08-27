@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import SpotForm from './SpotForm';
-
+import "./CreateSpotModal.css"
 
 function SpotFormModal() {
 
@@ -16,7 +16,7 @@ function SpotFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Become a Host</button>
+      <div className='host-interactive' onClick={() => setShowModal(true)}>Become a Host</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <SpotForm />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import EditSpotForm from './EditForm';
-
+import "./EditSpotModal.css"
 
 
 function EditSpotModal() {
@@ -17,7 +17,7 @@ function EditSpotModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit Spot</button>
+      <div className='edit-button' onClick={() => setShowModal(true)}>Edit Spot</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSpotForm />

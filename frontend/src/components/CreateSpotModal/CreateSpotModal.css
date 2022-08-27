@@ -1,4 +1,4 @@
-.review-button {
+.host-interactive {
     display: flex;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     height: 30px;
@@ -6,7 +6,9 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 5px;
-    color: white;
-    background-color: #FF385C;
+}
+
+.host-interactive:hover {
+    background-color: #EBEBEB;
+    border-radius: 16px;
 }

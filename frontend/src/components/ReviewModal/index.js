@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import ReviewForm from './ReviewForm';
 
+import "./ReviewModal.css"
+
 
 function ReviewFormModal() {
 
@@ -16,7 +18,7 @@ function ReviewFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Leave a Review!</button>
+      <button className='review-button' onClick={() => setShowModal(true)}>Leave a Review!</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ReviewForm />

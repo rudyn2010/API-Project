@@ -33,8 +33,6 @@ a {
     gap: 4px;
 }
 
-
-
-.reviewDelete:hover {
+.reviewDelete {
     cursor: pointer;
 }

@@ -1,7 +1,27 @@
+.big-ol-centered-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    padding-top: 25px;
+}
+
+
+.title-picture-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 50%; */
+}
+
 .spot-detail-main {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 1000px; */
 }
 
 .spot-detail-title-widget {
@@ -22,9 +42,34 @@
     gap: 10px;
 }
 
+.edit-delete-container {
+    display: flex;
+    gap: 10px;
+}
+
+.image-display-container {
+    vertical-align: bottom;
+    height: 550px;
+    min-height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.display-image {
+    object-fit: cover;
+    vertical-align: bottom;
+    height: 100% !important;
+    width: 100% !important;
+    border-radius: 16px;
+}
+
+
 .spots-reviews-container {
     display: flex;
     justify-content: center;
     border-top: lightgray 1px solid;
-    border-bottom: black 1px solid;
+    border-bottom: lightgray 1px solid;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

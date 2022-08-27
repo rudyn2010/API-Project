@@ -20,15 +20,12 @@ const SpotDetailsCard = () => {
     let { spotId } = useParams();
     spotId = parseInt(spotId);
 
-    //Object.values => potentially to key into it later
     const sessionUser = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => Object.values(state.reviews));
     const spots = useSelector((state) => state.spots);
 
     const spot = spots[spotId]
     let currentUser;
-
-    console.log("SPOT SPOT DETAIL:", spot)
 
     if (sessionUser && spot) {
         if (sessionUser.id === spot.ownerId) {
@@ -50,23 +47,13 @@ const SpotDetailsCard = () => {
         history.push("/");
     };
 
-    // if (!spot) {
-    //     return null;
-    // };
-
     const reviewDisplay = reviews.map((review) => (
         <ReviewsCard key={ review?.id } review={ review } />
     ))
 
     return isLoaded && (
-        <>
-            { currentUser && (
-                    <>
-                    <EditSpotModal />
-                    <button onClick={handleDelete}>Delete</button>
-                    </>
-                )
-            }
+        <div className="big-ol-centered-div">
+        <div className="title-picture-container">
         <div className="spot-detail-main">
             <div className="spot-detail-title-widget">
                 <div className="spot-name-text">{spot?.description}: {spot?.name}</div>
@@ -77,9 +64,17 @@ const SpotDetailsCard = () => {
                     <div>{spot?.city}, {spot?.state}, {spot?.country}</div>
                 </div>
             </div>
+                { currentUser && (
+                    <div className="edit-delete-container">
+                        <EditSpotModal />
+                        <button onClick={(e) => handleDelete(e)}>Delete</button>
+                    </div>
+                    )
+                }
+        </div>
             <div className="image-display-container">
                 { spot?.Images && (
-                        <img src={spot?.Images[0]?.url} alt="Img Not Found"/>
+                    <img className="display-image" src={spot?.Images[0]?.url} alt="Img Not Found"/>
                     )
                 }
             </div>
@@ -88,7 +83,7 @@ const SpotDetailsCard = () => {
         <div className="spots-reviews-container">
             {reviewDisplay}
         </div>
-        </>
+        </div>
     )
 }
 

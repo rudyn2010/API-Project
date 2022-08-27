@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 
-// import { useHistory } from "react-router-dom";
-import { createASpot } from "../../store/spots";
+import { useHistory } from "react-router-dom";
+import { addImageToSpot, createASpot } from "../../store/spots";
 
 const SpotForm = () => {
 
     const dispatch = useDispatch();
-    //const history = useHistory();
+    const history = useHistory();
 
     const [ address, setAddress ] = useState("");
     const [ city, setCity ] = useState("");
@@ -19,6 +19,7 @@ const SpotForm = () => {
     const [ name, setName ] = useState("");
     const [ description, setDescription ] = useState("");
     const [ price, setPrice ] = useState("");
+    const [ imgUrl, setImgUrl ] = useState("");
 
     //slice for errors
     const [ errors, setErrors ] = useState([]);
@@ -27,14 +28,15 @@ const SpotForm = () => {
         let errors = [];
         if (description.length > 255) errors.push('Description must be less than 255 characters');
         if (name.length > 50) errors.push('Name must be less than 50 characters');
+        if (!imgUrl.endsWith(".jpg") && !imgUrl.endsWith(".jpeg") && !imgUrl.endsWith(".png")) errors.push('Valid Image Url is required')
         setErrors(errors);
-    }, [ address, city, state, country, lat, lng, name, description, price ]);
+    }, [ address, city, state, country, lat, lng, name, description, price, imgUrl ]);
 
     const errorsList = errors.map((error, i) => (
       <li key={i} >{error}</li>
     ))
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         const spotData = {
@@ -49,9 +51,18 @@ const SpotForm = () => {
           price
         }
 
-        setErrors([]);
-        dispatch(createASpot(spotData));
+        const imgUrlData = {
+          previewImage: true,
+          url: imgUrl
+        }
 
+        setErrors([]);
+        let data = await dispatch(createASpot(spotData));
+        console.log("IM HERE:", data)
+        await dispatch(addImageToSpot(data.id, imgUrlData))
+        if (data) {
+          history.push(`/spots/${data.id}`)
+        }
     }
 
     return (
@@ -105,6 +116,8 @@ const SpotForm = () => {
           <input
             type="number"
             name="lat"
+            min={-90}
+            max={90}
             value={lat}
             onChange={(e) => setLat(e.target.value)}
             required
@@ -115,6 +128,8 @@ const SpotForm = () => {
           <input
             type="number"
             name="lng"
+            min={-180}
+            max={180}
             value={lng}
             onChange={(e) => setLng(e.target.value)}
             required
@@ -147,6 +162,16 @@ const SpotForm = () => {
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Image Url
+          <input
+            type="text"
+            name="imgUrl"
+            value={imgUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
             required
           />
         </label>

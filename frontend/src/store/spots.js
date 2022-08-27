@@ -93,7 +93,7 @@ export const updateASpot = ({spotId, spotData}) => async (dispatch) => {
 
     if (response.ok) {
         const spot = await response.json();
-        dispatch(actionUpdateSpot(spot));
+        dispatch(fetchSpotById(spotId));
     };
 };
 

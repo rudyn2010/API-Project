@@ -63,13 +63,6 @@ const SpotForm = () => {
 
         history.push(`/spots/${newSpot.id}`)
 
-        setErrors([]);
-        let data = await dispatch(createASpot(spotData));
-        console.log("IM HERE:", data)
-        await dispatch(addImageToSpot(data.id, imgUrlData))
-        if (data) {
-          history.push(`/spots/${data.id}`)
-        }
     }
 
     return (

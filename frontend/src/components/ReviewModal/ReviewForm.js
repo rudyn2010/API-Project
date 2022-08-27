@@ -13,6 +13,8 @@ const ReviewForm = () => {
     const [ review, setReview ] = useState("");
     const [ stars, setStars ] = useState(0);
 
+    const [ errors, setErrors ] = useState([]);
+
     //TODO: Check if reviews needs a length validator
 
     const onSubmit = (e) => {
@@ -23,13 +25,26 @@ const ReviewForm = () => {
             stars
         };
 
-        dispatch(createAReviewForSpot({reviewData, spotId}));
-
+        dispatch(createAReviewForSpot({reviewData, spotId})).catch(
+          async (res) => {
+            const data = await res.json();
+            console.log("AM I CORRECT", data)
+            if (data && data.errors) setErrors(data.errors)
+            else if (data && data.message) {
+              setErrors([data.message])
+            }
+          }
+        );
     };
 
     return (
       <form onSubmit={onSubmit}>
         <h2>Leave A Review</h2>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
         <label>
           Review
           <input

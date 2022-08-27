@@ -15,17 +15,17 @@ const NewNavBar = ({ isLoaded }) => {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-          <>
+          <div className='user-profile-nav'>
             <SpotFormModal />
             <ProfileButton user={sessionUser} />
-          </>
+          </div>
         );
       } else {
         sessionLinks = (
-          <>
-            <LoginFormModal />
+          <div className='user-profile-nav'>
             <SignupFormModal />
-          </>
+            <LoginFormModal />
+          </div>
         );
       }
 

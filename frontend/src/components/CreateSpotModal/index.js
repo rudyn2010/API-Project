@@ -16,7 +16,7 @@ function SpotFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>New Spot</button>
+      <button onClick={() => setShowModal(true)}>Become a Host</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <SpotForm />

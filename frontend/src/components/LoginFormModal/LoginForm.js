@@ -22,31 +22,29 @@ function LoginForm() {
   };
 
   return (
-    <>
-      <form className="login-modal-form" onSubmit={handleSubmit}>
+    <div className="login-modal-display">
+      <form className="login-form" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Username or Email
-          <input
+        <div className="login-modal-fields">
+          <input className="username-input"
+            placeholder="Username or Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
-          />
-        </label>
-        <label>
-          Password
+            />
+        </div>
           <input
+            placeholder="Enter Your Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
         <button type="submit">Continue</button>
         <div className="demo-user-main-container">
             <button className="demo-button" type="submit" onClick={() => {
@@ -55,7 +53,7 @@ function LoginForm() {
           }}>DEMO USER</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

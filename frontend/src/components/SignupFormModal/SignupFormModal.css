@@ -16,9 +16,5 @@
 .signup-form-content {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-    border-radius: 16px;
-    border: red 1px solid;
-    width: 400px;
 }

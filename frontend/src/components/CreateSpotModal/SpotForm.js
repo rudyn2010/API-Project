@@ -98,7 +98,7 @@ const SpotForm = () => {
               required
               />
             <input className="modal-input-field"
-              placeholder="state"
+              placeholder="State"
               type="text"
               name="state"
               value={state}
@@ -106,7 +106,7 @@ const SpotForm = () => {
               required
               />
             <input className="modal-input-field"
-              placeholder="country"
+              placeholder="Country"
               type="text"
               name="country"
               value={country}

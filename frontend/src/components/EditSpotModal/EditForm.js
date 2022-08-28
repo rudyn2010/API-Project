@@ -59,99 +59,84 @@ const EditSpotForm = () => {
     }
 
     return (
-      <form onSubmit={onSubmit}>
-        <h2>Edit Your Spot</h2>
-        <ul className="errors">
-          {errorsList}
-        </ul>
-        <label>
-          Address
-          <input
-            type="text"
-            name="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </label>
-        <label>
-          City
-          <input
-            type="text"
-            name="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-        </label>
-        <label>
-          State
-          <input
-            type="text"
-            name="state"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-        </label>
-        <label>
-          Country
-          <input
-            type="text"
-            name="country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-        </label>
-        <label>
-          Latitude
-          <input
-            type="number"
-            name="lat"
-            value={lat}
-            onChange={(e) => setLat(e.target.value)}
-          />
-        </label>
-        <label>
-          Longitude
-          <input
-            type="number"
-            name="lng"
-            value={lng}
-            onChange={(e) => setLng(e.target.value)}
-          />
-        </label>
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          Description
-          <input
-            type="text"
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Price
-          <input
-            type="number"
-            name="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </label>
-        <button
-          type="submit"
-          disabled={errors.length > 0}
-        >
-          Continue
-        </button>
-      </form>
+      <div className="edit-modal-display">
+        <form className="edit-modal-form" onSubmit={onSubmit}>
+          <div className="edit-form-header">Edit Your Spot</div>
+          <ul className="errors">
+            {errorsList}
+          </ul>
+            <input className="modal-input-field"
+              placeholder="Name"
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              />
+            <input className="modal-input-field"
+              placeholder="Address"
+              type="text"
+              name="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              />
+            <input className="modal-input-field"
+              placeholder="City"
+              type="text"
+              name="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              />
+            <input className="modal-input-field"
+              placeholder="State"
+              type="text"
+              name="state"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              />
+            <input className="modal-input-field"
+              placeholder="Country"
+              type="text"
+              name="country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              />
+            <input className="modal-input-field"
+                placeholder="Price"
+                type="number"
+                name="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                />
+            <input className="modal-input-field"
+                placeholder="Description"
+                type="text"
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                />
+            <input className="modal-input-field"
+              placeholder="Latitude"
+              type="number"
+              name="lat"
+              value={lat}
+              onChange={(e) => setLat(e.target.value)}
+              />
+            <input className="modal-input-field"
+              placeholder="Longitude"
+              type="number"
+              name="lng"
+              value={lng}
+              onChange={(e) => setLng(e.target.value)}
+              />
+          <button
+            className="edit-cont-button"
+            type="submit"
+            disabled={errors.length > 0}
+            >
+            Continue
+          </button>
+        </form>
+      </div>
     );
   }
 

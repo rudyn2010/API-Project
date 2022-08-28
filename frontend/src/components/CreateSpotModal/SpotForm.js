@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { useHistory } from "react-router-dom";
 import { addImageToSpot, createASpot } from "../../store/spots";
+import "./CreateSpotModal.css"
 
 const SpotForm = () => {
 
@@ -66,7 +67,7 @@ const SpotForm = () => {
     }
 
     return (
-      <form onSubmit={onSubmit}>
+      <form className="spot-create-form" onSubmit={onSubmit}>
         <h2>Create A New Spot</h2>
         <ul className="errors">
           {errorsList}

@@ -31,12 +31,12 @@ const EditSpotForm = () => {
         let errors = [];
         if (description.length > 255) errors.push('Description must be less than 255 characters');
         if (name.length > 50) errors.push('Name must be less than 50 characters');
+        if (price && `${price}`.split("").includes(".")) errors.push("Price must be a whole number.");
+        if (lat > 90 || lat < -90) errors.push("Latitude must be between -90 and 90.");
+        if (lng > 180 || lng < -180) errors.push("Longitude must be between -180 and 180.");
         setErrors(errors);
     }, [ address, city, state, country, lat, lng, name, description, price ]);
 
-    const errorsList = errors.map((error, i) => (
-      <li key={i} >{error}</li>
-    ))
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -52,19 +52,19 @@ const EditSpotForm = () => {
           description,
           price
         }
-
         setErrors([]);
         dispatch(updateASpot({ spotId, spotData }));
-
     }
 
     return (
       <div className="edit-modal-display">
         <form className="edit-modal-form" onSubmit={onSubmit}>
           <div className="edit-form-header">Edit Your Spot</div>
-          <ul className="errors">
-            {errorsList}
-          </ul>
+            <div className="errors-display">
+              {errors.map((error, idx) => (
+                <div key={idx}>{error}</div>
+              ))}
+            </div>
             <input className="modal-input-field"
               placeholder="Name"
               type="text"

@@ -21,6 +21,7 @@ const SpotForm = () => {
     const [ description, setDescription ] = useState("");
     const [ price, setPrice ] = useState("");
     const [ imgUrl, setImgUrl ] = useState("");
+    const [ isSubmitted, setIsSubmitted ] = useState(false);
 
     //slice for errors
     const [ errors, setErrors ] = useState([]);
@@ -39,6 +40,10 @@ const SpotForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setIsSubmitted(true);
+
+        if (errors.length) return;
 
         const spotData = {
           address,
@@ -70,11 +75,14 @@ const SpotForm = () => {
       <div className="create-modal-display">
         <form className="spot-create-form" onSubmit={handleSubmit}>
           <div className="spot-form-header">Create A New Spot</div>
-            <div className="errors-display">
-              {errors.map((error, idx) => (
-                <div key={idx}>{error}</div>
-              ))}
-            </div>
+            { isSubmitted && errors.length > 0 && (
+                <div className="errors-display">
+                  {errors.map((error, idx) => (
+                    <div key={idx}>{error}</div>
+                  ))}
+                </div>
+              )
+            }
             <input className="modal-input-field"
               placeholder="Name"
               type="text"

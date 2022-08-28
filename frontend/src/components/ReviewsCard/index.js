@@ -37,10 +37,12 @@ const ReviewsCard = ({ review }) => {
             <div className="review-inner-container">
                 {review.review}
             </div>
-            {currentUser && (
+            <div className="make-button-go-right">
+                {currentUser && (
                     <button className="reviewDelete review-delete-button" onClick={handleDelete}> Delete</button>
-                )
-            }
+                    )
+                }
+            </div>
         </div>
     );
 

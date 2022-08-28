@@ -32,14 +32,14 @@
 }
 
 .spot-name-text {
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: 400;
 }
 
 .spot-detail-bar {
     display: flex;
     justify-content: flex-start;
-    font-size: smaller;
+    font-size:medium ;
     gap: 10px;
 }
 
@@ -109,6 +109,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    font-weight: 300;
     width: 75px;
     width: 550px;
     padding-left: 10px;
@@ -138,6 +139,6 @@
 
 .leave-review-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 10px;
 }

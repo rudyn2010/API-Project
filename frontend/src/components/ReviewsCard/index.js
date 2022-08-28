@@ -34,10 +34,10 @@ const ReviewsCard = ({ review }) => {
                     </div>
                 </div>
 
-                <div className="star-review-display">
+                {/* <div className="star-review-display">
                     <div className="star-sharp"><i className="fa-solid fa-star fa-sm"></i></div>
                     <div className="review-rating">{review?.stars}</div>
-                </div>
+                </div> */}
             </div>
             <div className="review-inner-container">
                 <div className="review-text">
@@ -45,7 +45,7 @@ const ReviewsCard = ({ review }) => {
                 </div>
             </div>
             {currentUser && (
-                    <button className="reviewDelete" onClick={handleDelete}> Delete</button>
+                    <button className="reviewDelete review-delete-button" onClick={handleDelete}> Delete</button>
                 )
             }
         </div>

@@ -82,19 +82,26 @@ const SpotDetailsCard = () => {
             <div className="description-price-widget">
                 <div className="description-spot-display overflow-field">{spot?.description}</div>
                 <div className="price-and-reviews">
-                    <div className="spot-detail-price">
-                        <div>${spot?.price}</div>
-                        <div>night</div>
-                    </div>
-                    <div className="spot-review-stars">
-                        <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
-                        <div>{spot?.avgStarRating}</div>
-                        <div>{spot?.numReviews} review(s)</div>
+                    <div className="pr-baseline">
+                        <div className="spot-detail-price">
+                            <div className="sdp-text">${spot?.price}</div>
+                            <div className="sdp-night">night</div>
+                        </div>
+                        <div className="spot-review-stars">
+                            <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
+                            <div>{spot?.avgStarRating}</div>
+                            <div>{spot?.numReviews} review(s)</div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="leave-review-container">
                 <ReviewFormModal />
+            </div>
+            <div className="spots-reviews-header">
+                <div className="star-sharp"><i className="fa-solid fa-star fa-xl"></i></div>
+                <div className="srh-avgstar">{spot?.avgStarRating}</div>
+                <div className="srh-numreviews">{spot?.numReviews} review(s)</div>
             </div>
             <div className="spots-reviews-container overflow-reviews">
                 {reviewDisplay}

@@ -90,7 +90,9 @@ const SpotDetailsCard = () => {
                         <div className="spot-review-stars">
                             <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
                             <div>{spot?.avgStarRating}</div>
-                            <div>{spot?.numReviews} review(s)</div>
+                            <div className="padding">
+                                <div>{spot?.numReviews} review(s)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,7 +103,9 @@ const SpotDetailsCard = () => {
             <div className="spots-reviews-header">
                 <div className="star-sharp"><i className="fa-solid fa-star fa-xl"></i></div>
                 <div className="srh-avgstar">{spot?.avgStarRating}</div>
-                <div className="srh-numreviews">{spot?.numReviews} review(s)</div>
+                <div className="padding-bigger">
+                    <div className="srh-numreviews">{spot?.numReviews} review(s)</div>
+                </div>
             </div>
             <div className="spots-reviews-container overflow-reviews">
                 {reviewDisplay}

@@ -174,3 +174,11 @@
 .srh-numreviews {
     font-size: xx-large;
 }
+
+.padding {
+    padding-left: 10px;
+}
+
+.padding-bigger {
+    padding-left: 20px;
+}

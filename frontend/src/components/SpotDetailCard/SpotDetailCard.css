@@ -1,4 +1,5 @@
 .big-ol-centered-div {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -82,7 +83,59 @@
     justify-content: center;
     border-top: lightgray 1px solid;
     border-bottom: lightgray 1px solid;
-    margin-top: 10px;
+    height: 500px;
+    margin-top: 15px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.overflow-reviews {
+    overflow-y: scroll;
+    overflow-y: hidden;
+}
+
+.description-price-widget {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.description-spot-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 75px;
+    width: 550px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* border: lightgrey 1px solid; */
+    border-radius: 5px;
+}
+
+.price-and-reviews {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    border: lightgray 1px solid;
+    border-radius: 5px;
+    height: 75px;
+    width: 300px;
+}
+.spot-detail-price {
+    display: flex;
+    align-items: center;
+}
+
+.spot-review-stars {
+    display: flex;
+    align-items: center;
+}
+
+.leave-review-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }

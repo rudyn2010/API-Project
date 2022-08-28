@@ -53,36 +53,52 @@ const SpotDetailsCard = () => {
 
     return isLoaded && (
         <div className="big-ol-centered-div">
-        <div className="title-picture-container">
-        <div className="spot-detail-main">
-            <div className="spot-detail-title-widget">
-                <div className="spot-name-text">{spot?.description}: {spot?.name}</div>
-                <div className="spot-detail-bar">
-                    <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
-                    <div>{spot?.avgStarRating}</div>
-                    <div>{spot?.numReviews} review(s)</div>
-                    <div>{spot?.city}, {spot?.state}, {spot?.country}</div>
+            <div className="title-picture-container">
+            <div className="spot-detail-main">
+                <div className="spot-detail-title-widget">
+                    <div className="spot-name-text">{spot?.name}</div>
+                    <div className="spot-detail-bar">
+                        <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
+                        <div>{spot?.avgStarRating}</div>
+                        <div>{spot?.numReviews} review(s)</div>
+                        <div>{spot?.city}, {spot?.state}, {spot?.country}</div>
+                    </div>
+                </div>
+                    { currentUser && (
+                        <div className="edit-delete-container">
+                            <EditSpotModal />
+                            <div className="delete-button" onClick={(e) => handleDelete(e)}>Delete</div>
+                        </div>
+                        )
+                    }
+            </div>
+                <div className="image-display-container">
+                    { spot?.Images && (
+                        <img className="display-image" src={spot?.Images[0]?.url} alt="Img Not Found"/>
+                        )
+                    }
                 </div>
             </div>
-                { currentUser && (
-                    <div className="edit-delete-container">
-                        <EditSpotModal />
-                        <div className="delete-button" onClick={(e) => handleDelete(e)}>Delete</div>
+            <div className="description-price-widget">
+                <div className="description-spot-display overflow-field">{spot?.description}</div>
+                <div className="price-and-reviews">
+                    <div className="spot-detail-price">
+                        <div>${spot?.price}</div>
+                        <div>night</div>
                     </div>
-                    )
-                }
-        </div>
-            <div className="image-display-container">
-                { spot?.Images && (
-                    <img className="display-image" src={spot?.Images[0]?.url} alt="Img Not Found"/>
-                    )
-                }
+                    <div className="spot-review-stars">
+                        <div className="star-sharp"><i className="fa-solid fa-star"></i></div>
+                        <div>{spot?.avgStarRating}</div>
+                        <div>{spot?.numReviews} review(s)</div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <ReviewFormModal />
-        <div className="spots-reviews-container">
-            {reviewDisplay}
-        </div>
+            <div className="leave-review-container">
+                <ReviewFormModal />
+            </div>
+            <div className="spots-reviews-container overflow-reviews">
+                {reviewDisplay}
+            </div>
         </div>
     )
 }

@@ -33,16 +33,11 @@ const ReviewsCard = ({ review }) => {
                         <div className="reviewer-date">Test Date '22</div>
                     </div>
                 </div>
-
-                {/* <div className="star-review-display">
-                    <div className="star-sharp"><i className="fa-solid fa-star fa-sm"></i></div>
-                    <div className="review-rating">{review?.stars}</div>
-                </div> */}
             </div>
             <div className="review-inner-container">
-                <div className="review-text">
+                {/* <div className="review-text"> */}
                     {review.review}
-                </div>
+                {/* </div> */}
             </div>
             {currentUser && (
                     <button className="reviewDelete review-delete-button" onClick={handleDelete}> Delete</button>

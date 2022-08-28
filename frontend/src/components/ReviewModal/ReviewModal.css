@@ -47,3 +47,8 @@
     font-size: 16px;
     border: none;
 }
+
+.overflow-field {
+    overflow-x: scroll;
+    overflow: hidden;
+}

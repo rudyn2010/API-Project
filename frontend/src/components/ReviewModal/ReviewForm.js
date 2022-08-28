@@ -15,7 +15,12 @@ const ReviewForm = () => {
 
     const [ errors, setErrors ] = useState([]);
 
-    //TODO: Check if reviews needs a length validator
+    useEffect(() => {
+      let errors = [];
+      if (review.length > 255) errors.push("Review must be under 255 or less!")
+
+      setErrors(errors);
+    },  [review, stars ])
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -45,7 +50,7 @@ const ReviewForm = () => {
               <li key={idx}>{error}</li>
               ))}
           </ul>
-            <input className="modal-input-field"
+            <input className="modal-input-field overflow-field"
               placeholder="Review"
               type="text"
               name="review"

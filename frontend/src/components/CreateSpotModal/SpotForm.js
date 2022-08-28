@@ -27,8 +27,11 @@ const SpotForm = () => {
 
     useEffect(() => {
         let errors = [];
-        if (description.length > 255) errors.push('Description must be less than 255 characters');
         if (name.length > 50) errors.push('Name must be less than 50 characters');
+        if (description.length > 255) errors.push('Description must be less than 255 characters');
+        if (price.split("").includes(".")) errors.push("Price must be a whole number.");
+        if (lat > 90 || lat < -90) errors.push("Latitude must be between -90 and 90.");
+        if (lng > 180 || lng < -180) errors.push("Longitude must be between -180 and 180.");
         if (!imgUrl.endsWith(".jpeg") && !imgUrl.endsWith(".png") && !imgUrl.endsWith(".jpg") && !imgUrl.endsWith(".gif")) errors.push('Valid Img Url is required');
         setErrors(errors);
     }, [ address, city, state, country, lat, lng, name, description, price, imgUrl ]);
@@ -121,7 +124,7 @@ const SpotForm = () => {
               onChange={(e) => setPrice(e.target.value)}
               required
               />
-            <input className="modal-input-field"
+            <input className="modal-input-field overflow-field"
               placeholder="Desciption"
               type="text"
               name="description"

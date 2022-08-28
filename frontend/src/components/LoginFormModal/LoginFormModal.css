@@ -14,20 +14,67 @@
 }
 
 .login-modal-display {
+    display: flex;
+    justify-content: center;
     width: 600px;
 }
 
 .login-form {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 600px;
+    gap: 8px;
+    width: 100%;
+    padding-bottom: 15px;
 }
 
-.login-modal-fields > input {
-    width: 100%;
+.login-form-header {
+    padding-top: 15px;
+    font-size: x-large;
 }
 
 .username-input {
-    width: 100%;
+    border: lightgray 1px solid;
+    width: 90%;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.username-input:focus {
+    border: black 1px solid;
+}
+
+.password-input {
+    border: lightgray 1px solid;
+    width: 90%;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.login-modal-button {
+    display: flex;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    height: 30px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background-color: #FF385C;
+}
+
+.demo-user-button {
+    display: flex;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    height: 30px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background-color: #FF385C;
 }

@@ -24,12 +24,12 @@ function LoginForm() {
   return (
     <div className="login-modal-display">
       <form className="login-form" onSubmit={handleSubmit}>
+        <div className="login-form-header">Please Log In</div>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <div className="login-modal-fields">
           <input className="username-input"
             placeholder="Username or Email"
             type="text"
@@ -37,20 +37,20 @@ function LoginForm() {
             onChange={(e) => setCredential(e.target.value)}
             required
             />
-        </div>
-          <input
-            placeholder="Enter Your Password"
+          <input className="password-input"
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        <button type="submit">Continue</button>
-        <div className="demo-user-main-container">
-            <button className="demo-button" type="submit" onClick={() => {
+          <div className="login-modal-button" onClick={(e) => handleSubmit(e)}>
+            Continue
+          </div>
+        <div className="demo-user-button" onClick={() => {
               setCredential("Demo-lition")
               setPassword("password")
-          }}>DEMO USER</button>
+          }}>Demo User
         </div>
       </form>
     </div>

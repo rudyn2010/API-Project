@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createAReviewForSpot } from "../../store/reviews";
-
+import "./ReviewModal.css"
 
 const ReviewForm = () => {
 
@@ -28,7 +28,6 @@ const ReviewForm = () => {
         dispatch(createAReviewForSpot({reviewData, spotId})).catch(
           async (res) => {
             const data = await res.json();
-            console.log("AM I CORRECT", data)
             if (data && data.errors) setErrors(data.errors)
             else if (data && data.message) {
               setErrors([data.message])
@@ -38,39 +37,37 @@ const ReviewForm = () => {
     };
 
     return (
-      <form onSubmit={onSubmit}>
-        <h2>Leave A Review</h2>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Review
-          <input
-            type="text"
-            name="review"
-            value={review}
-            onChange={(e) => setReview(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Stars
-          <input
-            type="number"
-            name="stars"
-            value={stars}
-            min={0}
-            max={5}
-            onChange={(e) => setStars(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">
-          Continue
-        </button>
-      </form>
+      <div className="review-modal-display">
+        <form className="review-form" onSubmit={onSubmit}>
+          <div className="review-form-header">Review / Comment</div>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+              ))}
+          </ul>
+            <input className="modal-input-field"
+              placeholder="Review"
+              type="text"
+              name="review"
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="Rate 1 - 5 Stars!"
+              type="number"
+              name="stars"
+              value={stars}
+              min={0}
+              max={5}
+              onChange={(e) => setStars(e.target.value)}
+              required
+              />
+          <button className="review-continue" type="submit">
+            Continue
+          </button>
+        </form>
+      </div>
     );
   }
 

@@ -1,0 +1,14 @@
+.login-interactive {
+    display: flex;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    height: 30px;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.login-interactive:hover {
+    background-color: #EBEBEB;
+    border-radius: 16px;
+}

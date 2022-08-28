@@ -47,11 +47,11 @@ function LoginForm() {
           <div className="login-modal-button" onClick={(e) => handleSubmit(e)}>
             Continue
           </div>
-        <div className="demo-user-button" onClick={() => {
+        <button className="demo-user-button" type="submit" onClick={() => {
               setCredential("Demo-lition")
               setPassword("password")
           }}>Demo User
-        </div>
+        </button>
       </form>
     </div>
   );

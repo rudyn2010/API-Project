@@ -35,9 +35,7 @@ const ReviewsCard = ({ review }) => {
                 </div>
             </div>
             <div className="review-inner-container">
-                {/* <div className="review-text"> */}
-                    {review.review}
-                {/* </div> */}
+                {review.review}
             </div>
             {currentUser && (
                     <button className="reviewDelete review-delete-button" onClick={handleDelete}> Delete</button>

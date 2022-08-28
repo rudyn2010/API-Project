@@ -80,7 +80,9 @@
 
 .spots-reviews-container {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 20px;
     border-top: lightgray 1px solid;
     border-bottom: lightgray 1px solid;
     height: 500px;

@@ -123,6 +123,7 @@
     flex-direction: row;
     align-items: center;
     border: lightgray 1px solid;
+    box-shadow: 1px 5px 15px 1px rgb(0 0 0 / 50%);
     border-radius: 5px;
     height: 75px;
     width: 300px;

@@ -37,7 +37,7 @@ const SpotForm = () => {
       <li key={i} >{error}</li>
     ))
 
-    const onSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const spotData = {
@@ -67,122 +67,101 @@ const SpotForm = () => {
     }
 
     return (
-      <form className="spot-create-form" onSubmit={onSubmit}>
-        <h2>Create A New Spot</h2>
-        <ul className="errors">
-          {errorsList}
-        </ul>
-        <label>
-          Address
-          <input
-            type="text"
-            name="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          City
-          <input
-            type="text"
-            name="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          State
-          <input
-            type="text"
-            name="state"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Country
-          <input
-            type="text"
-            name="country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Latitude
-          <input
-            type="number"
-            name="lat"
-            min={-90}
-            max={90}
-            value={lat}
-            onChange={(e) => setLat(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Longitude
-          <input
-            type="number"
-            name="lng"
-            min={-180}
-            max={180}
-            value={lng}
-            onChange={(e) => setLng(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Description
-          <input
-            type="text"
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Price
-          <input
-            type="number"
-            name="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Preview Image
-          <input
-            type="url"
-            name="imgUrl"
-            value={imgUrl}
-            onChange={(e) => setImgUrl(e.target.value)}
-            required
-          />
-        </label>
-        <button
-          type="submit"
-          disabled={errors.length > 0}
-        >
-          Continue
-        </button>
-      </form>
+      <div className="create-modal-display">
+        <form className="spot-create-form" onSubmit={handleSubmit}>
+          <div className="spot-form-header">Create A New Spot</div>
+          <ul className="errors">
+            {errorsList}
+          </ul>
+            <input className="modal-input-field"
+              placeholder="Name"
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="Address"
+              type="text"
+              name="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="City"
+              type="text"
+              name="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="state"
+              type="text"
+              name="state"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="country"
+              type="text"
+              name="country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="Price"
+              type="number"
+              name="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="Desciption"
+              type="text"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="Latitude"
+              type="number"
+              name="lat"
+              min={-90}
+              max={90}
+              value={lat}
+              onChange={(e) => setLat(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder="Longitude"
+              type="number"
+              name="lng"
+              min={-180}
+              max={180}
+              value={lng}
+              onChange={(e) => setLng(e.target.value)}
+              required
+              />
+            <input className="modal-input-field"
+              placeholder=".jpg / .jpeg / .png"
+              type="url"
+              name="imgUrl"
+              value={imgUrl}
+              onChange={(e) => setImgUrl(e.target.value)}
+              required
+              />
+          <div className="continue-modal-button" onClick={(e) => handleSubmit(e)}>
+            Continue
+          </div>
+        </form>
+      </div>
     );
   }
 

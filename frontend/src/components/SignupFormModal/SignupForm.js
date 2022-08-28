@@ -37,9 +37,9 @@ function SignupForm() {
     <div className="signup-modal-display">
       <form className="signup-form-content" onSubmit={handleSubmit}>
       <div className="spot-form-header">Become A Member</div>
-        <ul>
-          {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+        <div className="errors-display">
+          {Object.values(errors).map((error, idx) => <div key={idx}>{error}</div>)}
+        </div>
           <input className="modal-input-field"
             placeholder="First Name"
             type="text"

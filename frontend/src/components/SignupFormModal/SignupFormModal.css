@@ -37,3 +37,7 @@
     padding: 15px;
     border-radius: 5px;
 }
+
+.errors-display {
+    color: #FF385C;
+}

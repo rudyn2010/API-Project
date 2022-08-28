@@ -25,11 +25,11 @@ function LoginForm() {
     <div className="login-modal-display">
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="login-form-header">Please Log In</div>
-        <ul>
+        <div className="errors-display">
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <div key={idx}>{error}</div>
           ))}
-        </ul>
+        </div>
           <input className="username-input"
             placeholder="Username or Email"
             type="text"

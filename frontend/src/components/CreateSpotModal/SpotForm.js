@@ -36,9 +36,6 @@ const SpotForm = () => {
         setErrors(errors);
     }, [ address, city, state, country, lat, lng, name, description, price, imgUrl ]);
 
-    const errorsList = errors.map((error, i) => (
-      <li key={i} >{error}</li>
-    ))
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,9 +70,11 @@ const SpotForm = () => {
       <div className="create-modal-display">
         <form className="spot-create-form" onSubmit={handleSubmit}>
           <div className="spot-form-header">Create A New Spot</div>
-          <ul className="errors">
-            {errorsList}
-          </ul>
+            <div className="errors-display">
+              {errors.map((error, idx) => (
+                <div key={idx}>{error}</div>
+              ))}
+            </div>
             <input className="modal-input-field"
               placeholder="Name"
               type="text"

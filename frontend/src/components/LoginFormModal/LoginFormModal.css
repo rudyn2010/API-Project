@@ -81,3 +81,7 @@
     font-size: 16px;
     border: none;
 }
+
+.errors-display {
+    color: #FF385C;
+}

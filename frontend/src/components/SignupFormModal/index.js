@@ -14,7 +14,6 @@ function SignupFormModal() {
       <div className='signup-interactive' onClick={() => setShowModal(true)}>Sign Up</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-            <h3>Sign Up:</h3>
             <SignupForm />
         </Modal>
       )}

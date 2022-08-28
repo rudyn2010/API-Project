@@ -9,3 +9,41 @@
     gap: 10px;
     cursor: pointer;
 }
+
+/* menu */
+.profile-dropdown {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 200px;
+    width: 210px;
+    background-color: white;
+    border: lightgray 1px solid;
+    border-radius: 16px;
+    position: absolute;
+    top: 80px;
+    right: 5.3%;
+    /* padding-left: 15px; */
+}
+
+.welcome-dropdown {
+    padding-left: 15px;
+    border-bottom: lightgrey 1px solid;
+    padding-bottom: 8px;
+}
+
+.your-text-dropdown {
+    padding-left: 15px;
+    font-weight: 169;
+    transition: font-weight .15s;
+}
+
+.your-text-dropdown:hover {
+    font-weight: 300;
+}
+
+.logout-dropdown {
+    padding-left: 15px;
+    cursor: pointer;
+}

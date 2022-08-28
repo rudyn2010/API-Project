@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory} from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import "./ProfileButton.css"
 
@@ -42,20 +42,22 @@ function ProfileButton({ user }) {
         </div>
 
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.firstName}, {user.lastName}</li>
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <NavLink to="/your-listings">Your Listings</NavLink>
-          </li>
-          <li>
-            <NavLink to="/your-reviews">Your Reviews</NavLink>
-          </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="profile-dropdown">
+          <div className="">
+              <div className="welcome-dropdown"> Welcome, {user.firstName}</div>
+          </div>
+            <div className="linkhighlight-dropdown">
+              <NavLink className="your-text-dropdown" to="/your-listings">
+                  Your Listings
+              </NavLink>
+            </div>
+            <div className="linkhighlight-dropdown">
+              <NavLink className="your-text-dropdown" to="/your-reviews">
+                Your Reviews
+              </NavLink>
+            </div>
+          <div className="logout-dropdown" onClick={logout}>Log Out</div>
+        </div>
       )}
     </>
   );

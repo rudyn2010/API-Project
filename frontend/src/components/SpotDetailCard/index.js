@@ -97,9 +97,12 @@ const SpotDetailsCard = () => {
                     </div>
                 </div>
             </div>
-            <div className="leave-review-container">
-                <ReviewFormModal />
-            </div>
+            { sessionUser && (
+                    <div className="leave-review-container">
+                        <ReviewFormModal />
+                    </div>
+                )
+            }
             <div className="spots-reviews-header">
                 <div className="star-sharp"><i className="fa-solid fa-star fa-xl"></i></div>
                 <div className="srh-avgstar">{spot?.avgStarRating}</div>

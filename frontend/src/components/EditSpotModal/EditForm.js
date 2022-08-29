@@ -23,6 +23,7 @@ const EditSpotForm = () => {
     const [ name, setName ] = useState(spot?.name);
     const [ description, setDescription ] = useState(spot?.description);
     const [ price, setPrice ] = useState(spot?.price);
+    const [ isSubmitted, setIsSubmitted ] = useState(false);
 
     //slice for errors
     const [ errors, setErrors ] = useState([]);
@@ -40,6 +41,10 @@ const EditSpotForm = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        setIsSubmitted(true);
+
+        if(errors.length) return;
 
         const spotData = {
           address,
@@ -60,11 +65,14 @@ const EditSpotForm = () => {
       <div className="edit-modal-display">
         <form className="edit-modal-form" onSubmit={onSubmit}>
           <div className="edit-form-header">Edit Your Spot</div>
-            <div className="errors-display">
-              {errors.map((error, idx) => (
-                <div key={idx}>{error}</div>
-              ))}
-            </div>
+            { isSubmitted && errors.length > 0 && (
+                <div className="errors-display">
+                  {errors.map((error, idx) => (
+                    <div key={idx}>{error}</div>
+                  ))}
+                </div>
+              )
+            }
             <input className="modal-input-field"
               placeholder="Name"
               type="text"

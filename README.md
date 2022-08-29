@@ -52,24 +52,24 @@ Now you should be able to see the web application in your browser!
 ## Features Direction:
 
 ### Home Page Demo User
-You should be able to test the features of the application without signing up by clicking in the "Demo User" button.
-On this page a user can view spots
+On this page a user can view spots.
+You should be able to test the features of the application without having to sign up by clicking on the Demo User option in login prompt.
 
-<img width="1786" alt="Screen Shot 2022-08-28 at 6 23 56 PM" src="https://user-images.githubusercontent.com/14317966/187105121-c4e4407f-b644-48a0-b092-e9d679b034f6.png">
+<img width="897" alt="Screen Shot 2022-08-29 at 2 15 55 AM" src="https://user-images.githubusercontent.com/14317966/187170789-86398d43-fefc-4dfa-a1ff-4ab68ee92341.png">
 
 ### Spots Page by ID
 User should be able to see a spots detail page by clicking on a spot or navigating to a valid spotId url.
 
-<img width="1781" alt="Screen Shot 2022-08-28 at 6 29 20 PM" src="https://user-images.githubusercontent.com/14317966/187105423-2ad26e6c-dcc8-4ee5-a1d5-aff4d9e6e89f.png">
+<img width="1791" alt="Screen Shot 2022-08-29 at 2 23 44 AM" src="https://user-images.githubusercontent.com/14317966/187171087-e561ecfd-00e6-451c-874a-2af698cbea51.png">
 
-![Screen Shot 2022-08-28 at 8 38 31 PM](https://user-images.githubusercontent.com/14317966/187118411-201b0890-e8c8-4b3d-a723-caec0eec9e7f.png)
+<img width="1789" alt="Screen Shot 2022-08-29 at 2 24 05 AM" src="https://user-images.githubusercontent.com/14317966/187171569-d915acaa-6150-4f0e-9fc8-6b6b90eb1992.png">
 
 ### Current User's Spots
 User can view the spots that they have created.
 
-<img width="1788" alt="Screen Shot 2022-08-28 at 6 33 45 PM" src="https://user-images.githubusercontent.com/14317966/187105887-ed62c421-407b-4c48-8b25-21b9323ae4b7.png">
+<img width="1792" alt="Screen Shot 2022-08-29 at 2 42 13 AM" src="https://user-images.githubusercontent.com/14317966/187173084-9d9c6e37-ea44-4074-82f2-1e5a23c3d95a.png">
 
 ### Current User's Reviews
 User can view the reviews that they have created.
 
-![Screen Shot 2022-08-28 at 9 02 58 PM](https://user-images.githubusercontent.com/14317966/187121018-ae54b124-4259-404a-b64d-ec31d77dd87e.png)
+<img width="1792" alt="Screen Shot 2022-08-29 at 2 40 48 AM" src="https://user-images.githubusercontent.com/14317966/187172796-0396708a-2ac1-43ce-8e60-5c9008f1f800.png">

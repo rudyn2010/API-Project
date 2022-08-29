@@ -1,16 +1,48 @@
 #OxygenBnB
 <h1>Welcome to OxygenBnB, a project clone I made of AirBnB!</h1>
 <h2>About OxygenBnB</h2>
-<h4>OxygenBnB is a web application inspired by AirBnB. This project mimics the ability to create an online market place for hosting various spaces.</h4>
+<h5>OxygenBnB is a web application inspired by AirBnB. This project mimics the ability to create an online market place for hosting various spaces.</h5>
+
 [Click Here to interact with OxygenBnB](https://oxygenbnb.herokuapp.com/)
-[API routes](https://github.com//E-F-III/aA-project-Meetup-clone/wiki/API-Routes)
+
 <h2>Below are links to Project Wiki:</h2>
+
+[API Routes](https://github.com/rudyn2010/API-Project/wiki/API-ROUTES)
+
+[DB Schema](https://github.com/rudyn2010/API-Project/wiki/DB-SCHEMA)
+
+[Features List](https://github.com/rudyn2010/API-Project/wiki/FEATURES)
+
+[Redux State Shape](https://github.com/rudyn2010/API-Project/wiki/REDUX-STATE-SHAPE)
 
 
 <h2>This Project was built with:</h2>
-<h3>FrontEnd: React/Redux/JavaScript</h3>
-<h3>BackEnd: Express/Postgres</h3>
-<h3>Hosted: Live on Heroku</h3>
+<h4>FrontEnd: React/Redux/JavaScript</h4>
+<h4>BackEnd: Express/Postgres</h4>
+<h4>Hosted: Live on Heroku</h4>
 
 
-<h2></h2>
+<h2>Features Direction:</h2>
+
+<h3>Home Page Demo User</h3>
+You should be able to test the features of the application without signing up by clicking in the "Demo User" button. 
+On this page a user can view spots    
+
+<img width="1786" alt="Screen Shot 2022-08-28 at 6 23 56 PM" src="https://user-images.githubusercontent.com/14317966/187105121-c4e4407f-b644-48a0-b092-e9d679b034f6.png">
+
+<h3>Spots Page by ID</h3>
+User should be able to see a spots detail page by clicking on a spot or navigating to a valid spotId url.
+
+<img width="1781" alt="Screen Shot 2022-08-28 at 6 29 20 PM" src="https://user-images.githubusercontent.com/14317966/187105423-2ad26e6c-dcc8-4ee5-a1d5-aff4d9e6e89f.png">
+
+TODO: SS OF SPOTS REVIEWS
+
+<h3>Current User's Spots</h3>
+User can view the spots that they have created.
+
+<img width="1788" alt="Screen Shot 2022-08-28 at 6 33 45 PM" src="https://user-images.githubusercontent.com/14317966/187105887-ed62c421-407b-4c48-8b25-21b9323ae4b7.png">
+
+<h3>Current User's Reviews</h3>
+User can view the reviews that they have created.
+
+TODO: SS of Reviews

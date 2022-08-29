@@ -20,6 +20,6 @@ const SpotCard = ({ spot }) => {
             </div>
         </div>
     )
-}
+};
 
 export default SpotCard;

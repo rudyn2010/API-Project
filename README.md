@@ -16,10 +16,15 @@
 [Redux State Shape](https://github.com/rudyn2010/API-Project/wiki/REDUX-STATE-SHAPE)
 
 
-<h2>This Project was built with:</h2>
-<h4>FrontEnd: React/Redux/JavaScript</h4>
-<h4>BackEnd: Express/Postgres</h4>
-<h4>Hosted: Live on Heroku</h4>
+<h3> Tech Stack </h3>
+Frameworks, Platforms, and Libraries:
+Frontend: JavaScript, React, Redux, CSS, HTML:
+
+Backend: Express, Node.Js
+
+Database: Postgres
+
+Hosted On: Heroku 
 
 
 <h2>Features Direction:</h2>

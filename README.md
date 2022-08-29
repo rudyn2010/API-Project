@@ -50,5 +50,4 @@ User can view the spots that they have created.
 <h3>Current User's Reviews</h3>
 User can view the reviews that they have created.
 
-TODO: SS of Reviews
-
+![Screen Shot 2022-08-28 at 9 02 58 PM](https://user-images.githubusercontent.com/14317966/187121018-ae54b124-4259-404a-b64d-ec31d77dd87e.png)

@@ -57,6 +57,20 @@ const images = [
     previewImage: true,
     url: "https://a0.muscache.com/im/pictures/miso/Hosting-45465864/original/3d966c94-4c87-479b-8eeb-4889e9fb6ac9.jpeg?im_w=1440",
   },
+  {
+    userId: 1,
+    spotId: 9,
+    reviewId: null,
+    previewImage: true,
+    url: "https://a0.muscache.com/im/pictures/miso/Hosting-21397921/original/91411eed-7291-4419-8680-8c68b73ce726.jpeg?im_w=1200"
+  },
+  {
+    userId: 4,
+    spotId: 10,
+    reviewId: null,
+    previewImage: true,
+    url: "https://a0.muscache.com/im/pictures/2e5ce6c9-4935-49ce-891e-e6f7251a8590.jpg?im_w=1200"
+  }
 ];
 
 module.exports = {

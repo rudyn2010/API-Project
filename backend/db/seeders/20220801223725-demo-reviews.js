@@ -30,6 +30,18 @@ const sampleReviews = [
     stars: 1,
     userId: 2,
     spotId: 3
+  },
+  {
+    review: 'This couple had a very nice apartment, and their cat was so cute! What a lovely spot!',
+    stars: 5,
+    userId: 1,
+    spotId: 1
+  },
+  {
+    review: "Very spacious spot in San Diego! Views were amazing, pool was great! A nice place to lounge and vacation at.",
+    stars: 4,
+    userId: 1,
+    spotId: 5
   }
 ]
 

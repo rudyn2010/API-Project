@@ -97,6 +97,30 @@ const Spots = [
     description: 'Rice Seasoning',
     price: 34
   },
+  {
+    ownerId: 1,
+    address: '987 Wishing Well',
+    city: 'Murphy',
+    state: 'Texas',
+    country: 'USA',
+    lat: 58.72,
+    lng: 52,
+    name: "Ben's House",
+    description: "It's money dude!",
+    price: 333
+  },
+  {
+    ownerId: 4,
+    address: '658 Main Street',
+    city: 'Buffalo',
+    state: 'New York',
+    country: 'USA',
+    lat: 89.72,
+    lng: 32.0,
+    name: 'The Big Bad House',
+    description: 'A nice and quiet stay in a massive house!',
+    price: 258
+  },
 ]
 
 module.exports = {

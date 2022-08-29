@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAReview } from "../../store/reviews";
+import { fetchSpotById } from "../../store/spots";
 
 import "./ReviewsCard.css";
 
@@ -9,6 +10,9 @@ const ReviewsCard = ({ review }) => {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
+
+    let date = new Date().toLocaleDateString();
+
     let currentUser;
 
     if (sessionUser && review) {
@@ -20,7 +24,11 @@ const ReviewsCard = ({ review }) => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
+
         await dispatch(deleteAReview(review.id));
+
+        await dispatch(fetchSpotById(review.spotId));
+
     };
 
     return (
@@ -29,8 +37,8 @@ const ReviewsCard = ({ review }) => {
                 <div className="review-user-info">
                     <i className="fa-solid fa-user fa-2xl"></i>
                     <div className="name-date">
-                        <div className="reviewer-name">Name Here</div>
-                        <div className="reviewer-date">Test Date '22</div>
+                        <div className="reviewer-name">User Number #{review?.userId}</div>
+                        <div className="reviewer-date">{date}</div>
                     </div>
                 </div>
             </div>

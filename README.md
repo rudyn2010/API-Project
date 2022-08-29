@@ -40,7 +40,7 @@ User should be able to see a spots detail page by clicking on a spot or navigati
 
 <img width="1781" alt="Screen Shot 2022-08-28 at 6 29 20 PM" src="https://user-images.githubusercontent.com/14317966/187105423-2ad26e6c-dcc8-4ee5-a1d5-aff4d9e6e89f.png">
 
-TODO: SS OF SPOTS REVIEWS
+![Screen Shot 2022-08-28 at 8 38 31 PM](https://user-images.githubusercontent.com/14317966/187118411-201b0890-e8c8-4b3d-a723-caec0eec9e7f.png)
 
 <h3>Current User's Spots</h3>
 User can view the spots that they have created.
@@ -51,3 +51,4 @@ User can view the spots that they have created.
 User can view the reviews that they have created.
 
 TODO: SS of Reviews
+

@@ -7,7 +7,7 @@ function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
-  const [ demoUser, setDemoUser ] = useState("");
+  // const [ demoUser, setDemoUser ] = useState("");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {

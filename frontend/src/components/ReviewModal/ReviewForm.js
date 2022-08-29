@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createAReviewForSpot } from "../../store/reviews";
+import { fetchSpotById } from "../../store/spots";
 import "./ReviewModal.css"
 
 const ReviewForm = () => {
@@ -38,7 +39,9 @@ const ReviewForm = () => {
               setErrors([data.message])
             }
           }
-        );
+        )
+        .then(() => {dispatch(fetchSpotById(spotId))});
+
     };
 
     return (

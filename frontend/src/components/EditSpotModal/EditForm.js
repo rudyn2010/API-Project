@@ -57,8 +57,12 @@ const EditSpotForm = () => {
           description,
           price
         }
+
         setErrors([]);
-        dispatch(updateASpot({ spotId, spotData }));
+        dispatch(updateASpot({ spotId, spotData })).catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors)
+        });
     }
 
     return (

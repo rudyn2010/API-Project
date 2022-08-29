@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAReview } from "../../store/reviews";
+import { fetchSpotById } from "../../store/spots";
 
 import "./ReviewsCard.css";
 
@@ -23,7 +24,11 @@ const ReviewsCard = ({ review }) => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
+
         await dispatch(deleteAReview(review.id));
+
+        await dispatch(fetchSpotById(review.spotId));
+
     };
 
     return (

@@ -42,7 +42,7 @@ const SpotForm = () => {
         e.preventDefault();
 
         setIsSubmitted(true);
-
+        console.log("ERRRORS:", errors)
         if (errors.length) return;
 
         const spotData = {
@@ -63,7 +63,10 @@ const SpotForm = () => {
         }
 
         setErrors([]);
-        let newSpot = await dispatch(createASpot(spotData))
+        let newSpot = await dispatch(createASpot(spotData)).catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors)
+        })
 
         await dispatch(addImageToSpot(newSpot.id, imgData))
 
@@ -73,16 +76,13 @@ const SpotForm = () => {
 
     return (
       <div className="create-modal-display">
-        <form className="spot-create-form" onSubmit={handleSubmit}>
+          <form className="spot-create-form" onSubmit={handleSubmit}>
           <div className="spot-form-header">Create A New Spot</div>
-            { isSubmitted && errors.length > 0 && (
-                <div className="errors-display">
-                  {errors.map((error, idx) => (
-                    <div key={idx}>{error}</div>
-                  ))}
-                </div>
-              )
-            }
+          { isSubmitted && errors.length > 0 && (
+            <div className="errors-display">
+              {Object.values(errors).map((error, idx) => <div key={idx}>{error}</div>)}
+            </div>
+          )}
             <input className="modal-input-field"
               placeholder="Name"
               type="text"
@@ -127,6 +127,8 @@ const SpotForm = () => {
               placeholder="Price"
               type="number"
               name="price"
+              min={0}
+              step={1}
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required

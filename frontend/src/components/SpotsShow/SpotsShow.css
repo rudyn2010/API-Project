@@ -8,4 +8,23 @@
     max-width: 90%;
     gap: 10px 20px;
     padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.about-me-links {
+        display: flex;
+        justify-content: center;
+        border-top: lightgrey 1px solid;
+        align-items: center;
+        height: 34px;
+        gap: 15px;
+        padding-top: 15px;
+        padding-bottom: 12px;
+}
+
+.about-text {
+    display: flex;
+    justify-content: center;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    padding-bottom: 15px;
 }

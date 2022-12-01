@@ -1,6 +1,6 @@
 #OxygenBnB
 ## Welcome to OxygenBnB, a project clone I made of AirBnB!
-## About OxygenBnB 
+## About OxygenBnB
 OxygenBnB is a web application inspired by AirBnB. This project mimics the ability to create an online market place for hosting various spaces.
 
 [Click Here to interact with OxygenBnB](https://oxygenbnb.herokuapp.com/)
@@ -16,7 +16,7 @@ OxygenBnB is a web application inspired by AirBnB. This project mimics the abili
 [Redux State Shape](https://github.com/rudyn2010/API-Project/wiki/REDUX-STATE-SHAPE)
 
 
-## Tech Stack: 
+## Tech Stack:
 
 ### Frameworks, Platforms, and Libraries:
 Frontend: JavaScript, React, Redux, CSS, HTML:
@@ -27,10 +27,10 @@ Database: Postgres
 
 Hosted On: Heroku
 
-## How to Run Locally: 
+## How to Run Locally:
 1. Clone the github repository in your terminal to a file location of your choice
 2. Run npm i && npm i -D in both the Backend and Frontend folders
-3. Create a .env file in the Backend folder and copy the contents below. Replace your secret key with your own! 
+3. Create a .env file in the Backend folder and copy the contents below. Replace your secret key with your own!
 ```
 PORT=8000
 DB_FILE=db/dev.db
@@ -41,9 +41,9 @@ JWT_EXPIRES_IN=604800
 4. In the backend folder initialize the database and run the seeder files with the following commmands:
 ```
 npx dotenv sequelize db:migrate
-npx dotenv sequelzie db:seed:all
+npx dotenv sequelize db:seed:all
 ```
-5. Run npm start in the backend folder 
+5. Run npm start in the backend folder
 6. Run npm start in the frontend folder
 
 Now you should be able to see the web application in your browser!

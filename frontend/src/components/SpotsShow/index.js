@@ -35,6 +35,7 @@ const SpotsShow = () => {
                 <div className="about-me-links">
                     <a href="https://www.linkedin.com/in/rudy-nguyen/" class="fa-brands fa-linkedin fa-2xl" target={"_blank"}></a>
                     <a href="https://github.com/rudyn2010/OxygenBnB" class="fa-brands fa-github fa-2xl" target={"_blank"}></a>
+                    <a href="https://angel.co/rudy-nguyen" class="fa-brands fa-angellist fa-2xl" target={"_blank"}></a>
                 </div>
                 <div className="about-text">
                     OxygenBnB by Rudy Nguyen

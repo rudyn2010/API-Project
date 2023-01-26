@@ -34,7 +34,7 @@ const images = [
     spotId: 3,
     reviewId: null,
     previewImage: true,
-    url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-599112931775380314/original/5fa486d2-df0f-4b44-88ce-c3590e3be46d.jpeg?im_w=1200",
+    url: "https://a0.muscache.com/im/pictures/1f6c495e-b877-4a48-9f2c-d8012f640166.jpg?im_w=1200",
   },
   {
     userId: 1,

@@ -8,6 +8,9 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const { Op } = require('sequelize');
 
+//For AWS Feature
+const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3.js');
+
 const router = express.Router();
 
 //Validators Here:
@@ -100,13 +103,13 @@ const validateQueryParams = [
     handleValidationErrors
 ];
 
-const validateImage = [
-    check('url')
-        .exists({ checkFalsy: true })
-        .isURL()
-        .withMessage('Valid URL for Image is required'),
-    handleValidationErrors
-];
+// const validateImage = [
+//     check('url')
+//         .exists({ checkFalsy: true })
+//         .isURL()
+//         .withMessage('Valid URL for Image is required'),
+//     handleValidationErrors
+// ];
 
 //Get Spot of Current User
 router.get('/current', requireAuth, async (req, res, next) => {
@@ -234,7 +237,32 @@ router.get('/', validateQueryParams, async (req, res, next) => {
 });
 
 //Post an Image to a Spot based on the Spot's ID
-router.post('/:spotId/images', requireAuth, validateImage, async (req, res, next) => {
+// router.post('/:spotId/images', requireAuth, validateImage, async (req, res, next) => {
+//     const { url, previewImage } = req.body;
+//     const { spotId } = req.params;
+
+//     const spotById = await Spot.findByPk(spotId);
+
+//     if(!spotById) {
+//         const error = new Error("Spot couldn't be found");
+//         error.status = 404;
+//         return next(error);
+//     };
+//     const newImage = await Image.create({
+//         url: url,
+//         spotId: spotId,
+//         userId: req.user.id,
+//         previewImage
+//     });
+//     return res.json({
+//         "id": newImage.id,
+//         "imageableId": newImage.spotId,
+//         "url": newImage.url
+//     });
+// });
+
+//Post an Image to a Spot based on the Spot's ID - AWS
+router.post('/:spotId/images', requireAuth, singleMulterUpload("image"), async (req, res, next) => {
     const { url, previewImage } = req.body;
     const { spotId } = req.params;
 
@@ -245,17 +273,24 @@ router.post('/:spotId/images', requireAuth, validateImage, async (req, res, next
         error.status = 404;
         return next(error);
     };
-    const newImage = await Image.create({
-        url: url,
-        spotId: spotId,
-        userId: req.user.id,
-        previewImage
-    });
-    return res.json({
-        "id": newImage.id,
-        "imageableId": newImage.spotId,
-        "url": newImage.url
-    });
+
+    if (spotById) {
+        const spotImageUrl = await singlePublicFileUpload(req.file);
+
+        // const imageAWS = await spotById.createImage({
+        const imageAWS = await Image.create({
+            url: spotImageUrl,
+            spotId: spotId,
+            userId: req.user.id,
+            previewImage
+        })
+
+        res.json({
+            id: imageAWS.id,
+            imageableId: imageAWS.spotId,
+            url: imageAWS.url
+        })
+    };
 });
 
 //Create a Spot

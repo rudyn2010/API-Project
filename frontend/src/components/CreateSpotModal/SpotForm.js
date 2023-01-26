@@ -33,7 +33,7 @@ const SpotForm = () => {
         if (price.split("").includes(".")) errors.push("Price must be a whole number.");
         if (lat > 90 || lat < -90) errors.push("Latitude must be between -90 and 90.");
         if (lng > 180 || lng < -180) errors.push("Longitude must be between -180 and 180.");
-        if (!imgUrl.endsWith(".jpeg") && !imgUrl.endsWith(".png") && !imgUrl.endsWith(".jpg") && !imgUrl.endsWith(".gif")) errors.push('Valid Img Url is required');
+        // if (!imgUrl.endsWith(".jpeg") && !imgUrl.endsWith(".png") && !imgUrl.endsWith(".jpg") && !imgUrl.endsWith(".gif")) errors.push('Valid Img Url is required');
         setErrors(errors);
     }, [ address, city, state, country, lat, lng, name, description, price, imgUrl ]);
 
@@ -42,7 +42,7 @@ const SpotForm = () => {
         e.preventDefault();
 
         setIsSubmitted(true);
-        console.log("ERRRORS:", errors)
+        // console.log("ERRRORS:", errors)
         if (errors.length) return;
 
         const spotData = {
@@ -62,6 +62,8 @@ const SpotForm = () => {
           url: imgUrl
         }
 
+        console.log("image data", imgData);
+
         setErrors([]);
         let newSpot = await dispatch(createASpot(spotData)).catch(async (res) => {
           const data = await res.json();
@@ -71,8 +73,14 @@ const SpotForm = () => {
         await dispatch(addImageToSpot(newSpot.id, imgData))
 
         history.push(`/spots/${newSpot.id}`)
+    };
 
-    }
+    const updateFile = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        setImgUrl(file)
+      };
+    };
 
     return (
       <div className="create-modal-display">
@@ -161,13 +169,19 @@ const SpotForm = () => {
               onChange={(e) => setLng(e.target.value)}
               required
               />
-            <input className="modal-input-field"
+            {/* <input className="modal-input-field"
               placeholder=".jpg / .jpeg / .png"
               type="url"
               name="imgUrl"
               value={imgUrl}
               onChange={(e) => setImgUrl(e.target.value)}
               required
+              /> */}
+            <input className="modal-input-field"
+              placeholder="Image"
+              type="file"
+              name="imgUrl"
+              onChange={updateFile}
               />
           <div className="continue-modal-button" onClick={(e) => handleSubmit(e)}>
             Continue

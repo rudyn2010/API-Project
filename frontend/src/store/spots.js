@@ -72,6 +72,7 @@ export const createASpot = (spotData) => async (dispatch) => {
     };
     return response;
 };
+
 //Read:
 export const fetchSpotById = (spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`)
@@ -117,14 +118,26 @@ export const getCurrentUsersSpot = () => async (dispatch) => {
     }
 }
 
-//add Preview Image Feature:
-export const addImageToSpot = (spotId, imgUrl) => async (dispatch) => {
+//add Preview Image Feature: ** AWS Upload Feature **
+export const addImageToSpot = (spotId, image) => async (dispatch) => {
+    const formData = new FormData();
+
+    // for single file
+    if (image) {
+        formData.append("image", image.url)
+        formData.append("previewImage", image.previewImage)
+    };
+
+    console.log("*******hello form data*****", formData);
+
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: "POST",
-        header: {
-            'Content-Type': 'application/json'
+        headers: {
+            // 'Content-Type': 'application/json'
+            "Content-Type": "multipart/form-data"
         },
-        body: JSON.stringify(imgUrl)
+        // body: JSON.stringify(imgUrl)
+        body: formData
     });
     return response;
 }
